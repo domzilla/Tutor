@@ -18,6 +18,7 @@
 		F2F035C92A823237002DCE5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F035C82A823237002DCE5E /* Foundation.framework */; };
 		F2F035D32A823362002DCE5E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F035D22A823362002DCE5E /* main.m */; };
 		F2F035D62A82336C002DCE5E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2F035D42A82336C002DCE5E /* LaunchScreen.storyboard */; };
+		F2F035D92A823D80002DCE5E /* UIColor+Tutor.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F035D82A823D80002DCE5E /* UIColor+Tutor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,8 @@
 		F2F035C82A823237002DCE5E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F2F035D22A823362002DCE5E /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Tutor/main.m; sourceTree = SOURCE_ROOT; };
 		F2F035D52A82336C002DCE5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Tutor/Base.lproj/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
+		F2F035D72A823D80002DCE5E /* UIColor+Tutor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+Tutor.h"; sourceTree = "<group>"; };
+		F2F035D82A823D80002DCE5E /* UIColor+Tutor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Tutor.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,9 +92,10 @@
 				F2F035BB2A8231FB002DCE5E /* MTAppDelegate.m */,
 				F2F035BC2A8231FB002DCE5E /* MTSceneDelegate.h */,
 				F2F035B72A8231FB002DCE5E /* MTSceneDelegate.m */,
-				F2F035CC2A823289002DCE5E /* WindowController */,
-				F2F035CD2A823294002DCE5E /* ViewController */,
-				F2F035CE2A82329F002DCE5E /* Controls */,
+				F2F035DA2A823D95002DCE5E /* WindowController */,
+				F2F035DB2A823DA1002DCE5E /* ViewController */,
+				F2F035DC2A823DAF002DCE5E /* Controlls */,
+				F2F035DD2A823DB8002DCE5E /* Categories */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -124,31 +128,40 @@
 			path = "Other Sources";
 			sourceTree = "<group>";
 		};
-		F2F035CC2A823289002DCE5E /* WindowController */ = {
+		F2F035DA2A823D95002DCE5E /* WindowController */ = {
 			isa = PBXGroup;
 			children = (
 				F2F035B52A8231FB002DCE5E /* MTRootWindowController.h */,
 				F2F035BA2A8231FB002DCE5E /* MTRootWindowController.m */,
 			);
-			path = WindowController;
+			name = WindowController;
 			sourceTree = "<group>";
 		};
-		F2F035CD2A823294002DCE5E /* ViewController */ = {
+		F2F035DB2A823DA1002DCE5E /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				F2F035B62A8231FB002DCE5E /* MTTutorViewController.h */,
 				F2F035BD2A8231FB002DCE5E /* MTTutorViewController.m */,
 			);
-			path = ViewController;
+			name = ViewController;
 			sourceTree = "<group>";
 		};
-		F2F035CE2A82329F002DCE5E /* Controls */ = {
+		F2F035DC2A823DAF002DCE5E /* Controlls */ = {
 			isa = PBXGroup;
 			children = (
 				F2F035B92A8231FB002DCE5E /* MTButton.h */,
 				F2F035B42A8231FB002DCE5E /* MTButton.m */,
 			);
-			path = Controls;
+			name = Controlls;
+			sourceTree = "<group>";
+		};
+		F2F035DD2A823DB8002DCE5E /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				F2F035D72A823D80002DCE5E /* UIColor+Tutor.h */,
+				F2F035D82A823D80002DCE5E /* UIColor+Tutor.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,6 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2F035C02A8231FC002DCE5E /* MTRootWindowController.m in Sources */,
+				F2F035D92A823D80002DCE5E /* UIColor+Tutor.m in Sources */,
 				F2F035BE2A8231FC002DCE5E /* MTButton.m in Sources */,
 				F2F035C22A8231FC002DCE5E /* MTTutorViewController.m in Sources */,
 				F2F035C12A8231FC002DCE5E /* MTAppDelegate.m in Sources */,
@@ -358,7 +372,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 568T6RKXH7;
@@ -390,7 +403,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 568T6RKXH7;
