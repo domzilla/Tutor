@@ -7,6 +7,8 @@
 
 #import "MTTutorViewController.h"
 
+#import "UIColor+Tutor.h"
+
 @interface MTTutorViewController ()
 
 - (void)activateTool:(PKTool *)tool;
@@ -25,9 +27,9 @@
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])
     {
         whiteInkTool = [[PKInkingTool alloc] initWithInkType:PKInkTypePen color:[UIColor whiteColor] width:TTPenWidth];
-        redInkTool = [[PKInkingTool alloc] initWithInkType:PKInkTypePen color:[UIColor redColor] width:TTPenWidth];
-        greenInkTool = [[PKInkingTool alloc] initWithInkType:PKInkTypePen color:[UIColor greenColor] width:TTPenWidth];
-        blueInkTool = [[PKInkingTool alloc] initWithInkType:PKInkTypePen color:[UIColor blueColor] width:TTPenWidth];
+        redInkTool = [[PKInkingTool alloc] initWithInkType:PKInkTypePen color:[UIColor mt_redColor] width:TTPenWidth];
+        greenInkTool = [[PKInkingTool alloc] initWithInkType:PKInkTypePen color:[UIColor mt_greenColor] width:TTPenWidth];
+        blueInkTool = [[PKInkingTool alloc] initWithInkType:PKInkTypePen color:[UIColor mt_blueColor] width:TTPenWidth];
         eraserTool = [[PKEraserTool alloc] initWithEraserType:PKEraserTypeBitmap];
     }
     return self;
@@ -93,19 +95,19 @@
                 forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:whitePenButton];
         
-    redPenButton = [MTButton buttonWithColor:[UIColor redColor]];
+    redPenButton = [MTButton buttonWithColor:[UIColor mt_redColor]];
     [redPenButton addTarget:self
                           action:@selector(redPenButtonAction:)
                 forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:redPenButton];
     
-    greenPenButton = [MTButton buttonWithColor:[UIColor greenColor]];
+    greenPenButton = [MTButton buttonWithColor:[UIColor mt_greenColor]];
     [greenPenButton addTarget:self
                           action:@selector(greenPenButtonAction:)
                 forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:greenPenButton];
     
-    bluePenButton = [MTButton buttonWithColor:[UIColor blueColor]];
+    bluePenButton = [MTButton buttonWithColor:[UIColor mt_blueColor]];
     [bluePenButton addTarget:self
                           action:@selector(bluePenButtonAction:)
                 forControlEvents:UIControlEventTouchUpInside];
