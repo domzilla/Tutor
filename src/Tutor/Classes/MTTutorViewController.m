@@ -18,16 +18,11 @@
 @implementation MTTutorViewController
 
 #define TTCanvasGridSize 20
-#define TTPenWidth 4.0
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])
     {
-        whiteInkTool = [[PKInkingTool alloc] initWithInkType:PKInkTypePen color:[UIColor whiteColor] width:TTPenWidth];
-        redInkTool = [[PKInkingTool alloc] initWithInkType:PKInkTypePen color:[UIColor mt_redColor] width:TTPenWidth];
-        greenInkTool = [[PKInkingTool alloc] initWithInkType:PKInkTypePen color:[UIColor mt_greenColor] width:TTPenWidth];
-        blueInkTool = [[PKInkingTool alloc] initWithInkType:PKInkTypePen color:[UIColor mt_blueColor] width:TTPenWidth];
         eraserTool = [[PKEraserTool alloc] initWithEraserType:PKEraserTypeBitmap];
     }
     return self;
@@ -92,29 +87,35 @@
                 forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:toggleTextButton];
     
-    whitePenButton = [MTButton buttonWithColor:[UIColor whiteColor]];
-    [whitePenButton addTarget:self
-                          action:@selector(whitePenButtonAction:)
+    whiteInkButton = [MTButton buttonWithColor:[UIColor whiteColor]];
+    [whiteInkButton addTarget:self
+                          action:@selector(whiteInkButtonAction:)
                 forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:whitePenButton];
+    [self.view addSubview:whiteInkButton];
         
-    redPenButton = [MTButton buttonWithColor:[UIColor mt_redColor]];
-    [redPenButton addTarget:self
-                          action:@selector(redPenButtonAction:)
+    redInkButton = [MTButton buttonWithColor:[UIColor mt_redColor]];
+    [redInkButton addTarget:self
+                          action:@selector(redInkButtonAction:)
                 forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:redPenButton];
+    [self.view addSubview:redInkButton];
     
-    greenPenButton = [MTButton buttonWithColor:[UIColor mt_greenColor]];
-    [greenPenButton addTarget:self
-                          action:@selector(greenPenButtonAction:)
+    greenInkButton = [MTButton buttonWithColor:[UIColor mt_greenColor]];
+    [greenInkButton addTarget:self
+                          action:@selector(greenInkButtonAction:)
                 forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:greenPenButton];
+    [self.view addSubview:greenInkButton];
     
-    bluePenButton = [MTButton buttonWithColor:[UIColor mt_blueColor]];
-    [bluePenButton addTarget:self
-                          action:@selector(bluePenButtonAction:)
+    blueInkButton = [MTButton buttonWithColor:[UIColor mt_blueColor]];
+    [blueInkButton addTarget:self
+                          action:@selector(blueInkButtonAction:)
                 forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:bluePenButton];
+    [self.view addSubview:blueInkButton];
+    
+    yellowInkButton = [MTButton buttonWithColor:[UIColor mt_yellowColor]];
+    [yellowInkButton addTarget:self
+                        action:@selector(yellowInkButtonAction:)
+              forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:yellowInkButton];
     
     eraserButton = [MTButton buttonWithImage:[UIImage systemImageNamed:@"eraser.fill"
                                                      withConfiguration:symbolConfiguration]];
@@ -123,7 +124,23 @@
                 forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:eraserButton];
     
+    inkStyleControl = [[UISegmentedControl alloc] initWithItems:@[[UIImage systemImageNamed:@"scribble"
+                                                                          withConfiguration:symbolConfiguration],
+                                                                  [UIImage systemImageNamed:@"scribble.variable"
+                                                                          withConfiguration:symbolConfiguration],
+                                                                  [UIImage systemImageNamed:@"highlighter"
+                                                                          withConfiguration:symbolConfiguration]]];
+    [inkStyleControl addTarget:self action:@selector(inkStyleControlAction:) forControlEvents:UIControlEventValueChanged];
+    inkStyleControl.layer.borderWidth = 2.0;
+    inkStyleControl.layer.borderColor = [[UIColor mt_tintColor] CGColor];
+    [self.view addSubview:inkStyleControl];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
     
+    self.inkStyle = MTTutorViewControllerInkStylePen;
 }
 
 - (void)viewWillLayoutSubviews
@@ -171,18 +188,77 @@
     
     buttonOrigin = CGPointMake(offset, bottomToolbarFrame.origin.y + floorf(bottomToolbarFrame.size.height/2 - buttonSize.height/2));
     
-    whitePenButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
+    whiteInkButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
     buttonOrigin.x += buttonSize.width + offset;
-    redPenButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
+    redInkButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
     buttonOrigin.x += buttonSize.width + offset;
-    greenPenButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
+    greenInkButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
     buttonOrigin.x += buttonSize.width + offset;
-    bluePenButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
+    blueInkButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
+    buttonOrigin.x += buttonSize.width + offset;
+    yellowInkButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
     buttonOrigin.x += buttonSize.width + 2*offset;
+    
+    inkStyleControl.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, inkStyleControl.frame.size.width, buttonSize.height);
+    buttonOrigin.x += inkStyleControl.frame.size.width + 2*offset;
     
     eraserButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
 }
 
+
+#pragma mark Accessors
+#pragma mark ---
+- (MTTutorViewControllerInkStyle)inkStyle
+{
+    return inkStyle;
+}
+
+- (void)setInkStyle:(MTTutorViewControllerInkStyle)anInkStyle
+{
+    inkStyle = anInkStyle;
+    
+    PKInkType inkType = PKInkTypePen;
+    CGFloat inkWidth = 4.0;
+    
+    if (inkStyle == MTTutorViewControllerInkStyleFatPen)
+    {
+        inkWidth = 15.0;
+    }
+    else if (inkStyle == MTTutorViewControllerInkStyleMarker)
+    {
+        inkType = PKInkTypeMarker;
+        inkWidth = 20.0;
+    }
+    
+    whiteInkTool = [[MTInkingTool alloc] initWithInkType:inkType color:[UIColor whiteColor] width:inkWidth identifier:0];
+    redInkTool = [[MTInkingTool alloc] initWithInkType:inkType color:[UIColor mt_redColor] width:inkWidth identifier:1];
+    greenInkTool = [[MTInkingTool alloc] initWithInkType:inkType color:[UIColor mt_greenColor] width:inkWidth identifier:2];
+    blueInkTool = [[MTInkingTool alloc] initWithInkType:inkType color:[UIColor mt_blueColor] width:inkWidth identifier:3];
+    yellowInkTool = [[MTInkingTool alloc] initWithInkType:inkType color:[UIColor mt_yellowColor] width:inkWidth identifier:4];
+    
+    switch ([activeInkTool identifier])
+    {
+        case 0:
+            [self activateTool:whiteInkTool];
+            break;
+        case 1:
+            [self activateTool:redInkTool];
+            break;
+        case 2:
+            [self activateTool:greenInkTool];
+            break;
+        case 3:
+            [self activateTool:blueInkTool];
+            break;
+        case 4:
+            [self activateTool:yellowInkTool];
+            break;
+        default:
+            break;
+    }
+    
+    inkStyleControl.selectedSegmentIndex = inkStyle;
+}
 
 
 #pragma mark Actions
@@ -212,29 +288,39 @@
     
 }
 
-- (void)whitePenButtonAction:(id)sender
+- (void)whiteInkButtonAction:(id)sender
 {
     [self activateTool:whiteInkTool];
 }
 
-- (void)redPenButtonAction:(id)sender
+- (void)redInkButtonAction:(id)sender
 {
     [self activateTool:redInkTool];
 }
 
-- (void)greenPenButtonAction:(id)sender
+- (void)greenInkButtonAction:(id)sender
 {
     [self activateTool:greenInkTool];
 }
 
-- (void)bluePenButtonAction:(id)sender
+- (void)blueInkButtonAction:(id)sender
 {
     [self activateTool:blueInkTool];
+}
+
+- (void)yellowInkButtonAction:(id)sender
+{
+    [self activateTool:yellowInkTool];
 }
 
 - (void)eraserButtonAction:(id)sender
 {
     [self activateTool:eraserTool];
+}
+
+- (void)inkStyleControlAction:(id)sender
+{
+    self.inkStyle = (MTTutorViewControllerInkStyle)inkStyleControl.selectedSegmentIndex;
 }
 
 
@@ -245,13 +331,17 @@
     if (tool == canvasView.tool)
         return;
     
-    whitePenButton.on = (tool == whiteInkTool);
-    redPenButton.on = (tool == redInkTool);
-    greenPenButton.on = (tool == greenInkTool);
-    bluePenButton.on = (tool == blueInkTool);
+    whiteInkButton.on = (tool == whiteInkTool);
+    redInkButton.on = (tool == redInkTool);
+    greenInkButton.on = (tool == greenInkTool);
+    blueInkButton.on = (tool == blueInkTool);
+    yellowInkButton.on = (tool == yellowInkTool);
     eraserButton.on = (tool == eraserTool);
     
     canvasView.tool = tool;
+    
+    if ([tool isKindOfClass:[MTInkingTool class]])
+        activeInkTool = (MTInkingTool *)tool;
 }
 
 @end

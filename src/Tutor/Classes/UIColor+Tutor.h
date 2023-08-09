@@ -9,8 +9,11 @@
 
 @interface UIColor (Tutor)
 
++ (UIColor *)mt_tintColor;
+
 + (UIColor *)mt_redColor;
 + (UIColor *)mt_greenColor;
 + (UIColor *)mt_blueColor;
++ (UIColor *)mt_yellowColor;
 
 @end

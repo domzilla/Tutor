@@ -9,7 +9,14 @@
 
 #import <PencilKit/PencilKit.h>
 
+#import "MTInkingTool.h"
 #import "MTButton.h"
+
+typedef NS_ENUM(NSUInteger, MTTutorViewControllerInkStyle) {
+    MTTutorViewControllerInkStylePen = 0,
+    MTTutorViewControllerInkStyleFatPen,
+    MTTutorViewControllerInkStyleMarker,
+};
 
 @interface MTTutorViewController : UIViewController
 {
@@ -20,27 +27,36 @@
     MTButton *toggleHeadlineButton;
     MTButton *toggleTextButton;
     
-    MTButton *whitePenButton;
-    MTButton *redPenButton;
-    MTButton *greenPenButton;
-    MTButton *bluePenButton;
+    MTButton *whiteInkButton;
+    MTButton *redInkButton;
+    MTButton *greenInkButton;
+    MTButton *blueInkButton;
+    MTButton *yellowInkButton;
     
     MTButton *eraserButton;
+    
+    UISegmentedControl *inkStyleControl;
     
     UIView *canvasContainerView;
     UIView *canvasGridView;
     PKCanvasView *canvasView;
     
-    PKInkingTool *whiteInkTool;
-    PKInkingTool *redInkTool;
-    PKInkingTool *greenInkTool;
-    PKInkingTool *blueInkTool;
+    MTInkingTool *whiteInkTool;
+    MTInkingTool *redInkTool;
+    MTInkingTool *greenInkTool;
+    MTInkingTool *blueInkTool;
+    MTInkingTool *yellowInkTool;
+    MTInkingTool *activeInkTool;
+    
     PKEraserTool *eraserTool;
-        
+    
     UITextField *headlineTextField;
     UITextField *textField;
+    
+    MTTutorViewControllerInkStyle inkStyle;
 }
 
+@property (nonatomic, assign) MTTutorViewControllerInkStyle inkStyle;
 
 @end
 

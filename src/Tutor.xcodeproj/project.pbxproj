@@ -19,6 +19,7 @@
 		F2F035ED2A835D2B002DCE5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2F035EB2A835D2B002DCE5E /* Assets.xcassets */; };
 		F2F035F12A835D33002DCE5E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2F035EF2A835D33002DCE5E /* LaunchScreen.storyboard */; };
 		F2F035F32A835D3A002DCE5E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F035F22A835D3A002DCE5E /* main.m */; };
+		F2F035F62A83ADE5002DCE5E /* MTInkingTool.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F035F52A83ADE5002DCE5E /* MTInkingTool.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,8 @@
 		F2F035EC2A835D2B002DCE5E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2F035F02A835D33002DCE5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F2F035F22A835D3A002DCE5E /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F2F035F42A83ADE5002DCE5E /* MTInkingTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTInkingTool.h; sourceTree = "<group>"; };
+		F2F035F52A83ADE5002DCE5E /* MTInkingTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTInkingTool.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +136,8 @@
 			children = (
 				F2F035B92A8231FB002DCE5E /* MTButton.h */,
 				F2F035B42A8231FB002DCE5E /* MTButton.m */,
+				F2F035F42A83ADE5002DCE5E /* MTInkingTool.h */,
+				F2F035F52A83ADE5002DCE5E /* MTInkingTool.m */,
 			);
 			name = Controlls;
 			sourceTree = "<group>";
@@ -233,6 +238,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2F035F62A83ADE5002DCE5E /* MTInkingTool.m in Sources */,
 				F2F035C02A8231FC002DCE5E /* MTRootWindowController.m in Sources */,
 				F2F035D92A823D80002DCE5E /* UIColor+Tutor.m in Sources */,
 				F2F035BE2A8231FC002DCE5E /* MTButton.m in Sources */,

@@ -7,6 +7,7 @@
 
 #import "MTRootWindowController.h"
 
+#import "UIColor+Tutor.h"
 #import "MTTutorViewController.h"
 
 @implementation MTRootWindowController
@@ -18,7 +19,7 @@
     if (self = [super init])
     {
         window = [[UIWindow alloc] initWithWindowScene:windowScene];
-        window.tintColor = [UIColor blackColor];
+        window.tintColor = [UIColor mt_tintColor];
         
         tutorViewController = [[MTTutorViewController alloc] initWithNibName:nil bundle:nil];
         window.rootViewController = tutorViewController;
