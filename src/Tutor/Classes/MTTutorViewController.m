@@ -17,9 +17,6 @@
 
 @implementation MTTutorViewController
 
-#define TTCanvasWidth 1112
-#define TTCanvasHeight 834
-
 #define TTPenWidth 4.0
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -126,53 +123,54 @@
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-        
-    CGFloat toolbarWidth = self.view.frame.size.width - TTCanvasWidth;
-    canvasBackgroundView.frame = CGRectMake(toolbarWidth,
-                                            0.0,
-                                            TTCanvasWidth,
-                                            TTCanvasHeight);
+    
+    CGFloat canvasWidth = self.view.frame.size.width;
+    CGFloat canvasHeight = floorf(canvasWidth/16 * 9);
+    CGRect topToolbarFrame = CGRectMake(0.0,
+                                        self.view.safeAreaInsets.top,
+                                        self.view.frame.size.width,
+                                        floorf((self.view.frame.size.height - canvasHeight) / 2) - self.view.safeAreaInsets.top);
+    CGRect bottomToolbarFrame = CGRectMake(0.0,
+                                           topToolbarFrame.origin.y + topToolbarFrame.size.height + canvasHeight,
+                                           self.view.frame.size.width,
+                                           self.view.frame.size.height - topToolbarFrame.origin.y -  topToolbarFrame.size.height - canvasHeight - self.view.safeAreaInsets.bottom);
+    
+    canvasBackgroundView.frame = CGRectMake(0.0,
+                                            topToolbarFrame.origin.y + topToolbarFrame.size.height,
+                                            canvasWidth,
+                                            canvasHeight);
     canvasView.frame = canvasBackgroundView.frame;
     
     CGFloat offset = 20.0;
     CGSize buttonSize = [MTButton buttonSize];
-    CGPoint buttonOrigin = CGPointMake(toolbarWidth/2 - buttonSize.width/2,
-                                       buttonSize.height);
+    CGPoint buttonOrigin = CGPointMake(offset, topToolbarFrame.origin.y + floorf(topToolbarFrame.size.height/2 - buttonSize.height/2));
     
     clearCanvasButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
-    buttonOrigin.y += buttonSize.height + offset;
+    buttonOrigin.x += buttonSize.width + offset;
     undoButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
-    buttonOrigin.y += buttonSize.height + offset;
+    buttonOrigin.x += buttonSize.width + offset;
     redoButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
-    buttonOrigin.y += buttonSize.height + 2*offset;
+    buttonOrigin.x += buttonSize.width + 2*offset;
     
     toggleHeadlineButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
-    buttonOrigin.y += buttonSize.height + offset;
+    buttonOrigin.x += buttonSize.width + offset;
     toggleTextButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
-    buttonOrigin.y += buttonSize.height + 2*offset;
+    buttonOrigin.x += buttonSize.width + 2*offset;
+    
+    buttonOrigin = CGPointMake(offset, bottomToolbarFrame.origin.y + floorf(bottomToolbarFrame.size.height/2 - buttonSize.height/2));
     
     whitePenButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
-    buttonOrigin.y += buttonSize.height + offset;
+    buttonOrigin.x += buttonSize.width + offset;
     redPenButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
-    buttonOrigin.y += buttonSize.height + offset;
+    buttonOrigin.x += buttonSize.width + offset;
     greenPenButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
-    buttonOrigin.y += buttonSize.height + offset;
+    buttonOrigin.x += buttonSize.width + offset;
     bluePenButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
-    buttonOrigin.y += buttonSize.height + 2*offset;
+    buttonOrigin.x += buttonSize.width + 2*offset;
     
     eraserButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
-    buttonOrigin.y += buttonSize.height + offset;
 }
 
-- (BOOL)prefersStatusBarHidden
-{
-    return YES;
-}
-
-- (BOOL)prefersHomeIndicatorAutoHidden
-{
-    return YES;
-}
 
 
 #pragma mark Actions
