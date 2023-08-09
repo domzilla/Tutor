@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F2F035A52A82315E002DCE5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2F035A42A82315E002DCE5E /* Assets.xcassets */; };
 		F2F035BE2A8231FC002DCE5E /* MTButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F035B42A8231FB002DCE5E /* MTButton.m */; };
 		F2F035BF2A8231FC002DCE5E /* MTSceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F035B72A8231FB002DCE5E /* MTSceneDelegate.m */; };
 		F2F035C02A8231FC002DCE5E /* MTRootWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F035BA2A8231FB002DCE5E /* MTRootWindowController.m */; };
@@ -16,15 +15,14 @@
 		F2F035C52A82320A002DCE5E /* PencilKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F035C42A823209002DCE5E /* PencilKit.framework */; };
 		F2F035C72A82322B002DCE5E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F035C62A82322B002DCE5E /* UIKit.framework */; };
 		F2F035C92A823237002DCE5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F035C82A823237002DCE5E /* Foundation.framework */; };
-		F2F035D32A823362002DCE5E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F035D22A823362002DCE5E /* main.m */; };
-		F2F035D62A82336C002DCE5E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2F035D42A82336C002DCE5E /* LaunchScreen.storyboard */; };
 		F2F035D92A823D80002DCE5E /* UIColor+Tutor.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F035D82A823D80002DCE5E /* UIColor+Tutor.m */; };
+		F2F035ED2A835D2B002DCE5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2F035EB2A835D2B002DCE5E /* Assets.xcassets */; };
+		F2F035F12A835D33002DCE5E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2F035EF2A835D33002DCE5E /* LaunchScreen.storyboard */; };
+		F2F035F32A835D3A002DCE5E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F035F22A835D3A002DCE5E /* main.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F2F035952A82315D002DCE5E /* Tutor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutor.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F2F035A42A82315E002DCE5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
-		F2F035A92A82315E002DCE5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		F2F035B42A8231FB002DCE5E /* MTButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTButton.m; sourceTree = "<group>"; };
 		F2F035B52A8231FB002DCE5E /* MTRootWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTRootWindowController.h; sourceTree = "<group>"; };
 		F2F035B62A8231FB002DCE5E /* MTTutorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTTutorViewController.h; sourceTree = "<group>"; };
@@ -38,10 +36,12 @@
 		F2F035C42A823209002DCE5E /* PencilKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PencilKit.framework; path = System/Library/Frameworks/PencilKit.framework; sourceTree = SDKROOT; };
 		F2F035C62A82322B002DCE5E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F2F035C82A823237002DCE5E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		F2F035D22A823362002DCE5E /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Tutor/main.m; sourceTree = SOURCE_ROOT; };
-		F2F035D52A82336C002DCE5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Tutor/Base.lproj/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
 		F2F035D72A823D80002DCE5E /* UIColor+Tutor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+Tutor.h"; sourceTree = "<group>"; };
 		F2F035D82A823D80002DCE5E /* UIColor+Tutor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Tutor.m"; sourceTree = "<group>"; };
+		F2F035EB2A835D2B002DCE5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F2F035EC2A835D2B002DCE5E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F2F035F02A835D33002DCE5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F2F035F22A835D3A002DCE5E /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,8 +79,8 @@
 			isa = PBXGroup;
 			children = (
 				F2F035B32A8231FB002DCE5E /* Classes */,
-				F2F035CA2A823240002DCE5E /* Resources */,
-				F2F035CB2A823265002DCE5E /* Other Sources */,
+				F2F035E92A835CF8002DCE5E /* Resources */,
+				F2F035EA2A835D06002DCE5E /* Other Sources */,
 			);
 			path = Tutor;
 			sourceTree = "<group>";
@@ -108,24 +108,6 @@
 				F2F035C42A823209002DCE5E /* PencilKit.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		F2F035CA2A823240002DCE5E /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				F2F035D42A82336C002DCE5E /* LaunchScreen.storyboard */,
-				F2F035A42A82315E002DCE5E /* Assets.xcassets */,
-				F2F035A92A82315E002DCE5E /* Info.plist */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		F2F035CB2A823265002DCE5E /* Other Sources */ = {
-			isa = PBXGroup;
-			children = (
-				F2F035D22A823362002DCE5E /* main.m */,
-			);
-			path = "Other Sources";
 			sourceTree = "<group>";
 		};
 		F2F035DA2A823D95002DCE5E /* WindowController */ = {
@@ -162,6 +144,24 @@
 				F2F035D82A823D80002DCE5E /* UIColor+Tutor.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		F2F035E92A835CF8002DCE5E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F2F035EF2A835D33002DCE5E /* LaunchScreen.storyboard */,
+				F2F035EB2A835D2B002DCE5E /* Assets.xcassets */,
+				F2F035EC2A835D2B002DCE5E /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		F2F035EA2A835D06002DCE5E /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				F2F035F22A835D3A002DCE5E /* main.m */,
+			);
+			name = "Other Sources";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,8 +221,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F2F035A52A82315E002DCE5E /* Assets.xcassets in Resources */,
-				F2F035D62A82336C002DCE5E /* LaunchScreen.storyboard in Resources */,
+				F2F035F12A835D33002DCE5E /* LaunchScreen.storyboard in Resources */,
+				F2F035ED2A835D2B002DCE5E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,7 +238,7 @@
 				F2F035BE2A8231FC002DCE5E /* MTButton.m in Sources */,
 				F2F035C22A8231FC002DCE5E /* MTTutorViewController.m in Sources */,
 				F2F035C12A8231FC002DCE5E /* MTAppDelegate.m in Sources */,
-				F2F035D32A823362002DCE5E /* main.m in Sources */,
+				F2F035F32A835D3A002DCE5E /* main.m in Sources */,
 				F2F035BF2A8231FC002DCE5E /* MTSceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -246,13 +246,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		F2F035D42A82336C002DCE5E /* LaunchScreen.storyboard */ = {
+		F2F035EF2A835D33002DCE5E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F2F035D52A82336C002DCE5E /* Base */,
+				F2F035F02A835D33002DCE5E /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
