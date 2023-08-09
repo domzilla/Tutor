@@ -27,7 +27,8 @@
     
     MTButton *eraserButton;
     
-    UIImageView *canvasBackgroundView;
+    UIView *canvasContainerView;
+    UIView *canvasGridView;
     PKCanvasView *canvasView;
     
     PKInkingTool *whiteInkTool;

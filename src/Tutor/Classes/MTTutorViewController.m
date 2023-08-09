@@ -17,6 +17,7 @@
 
 @implementation MTTutorViewController
 
+#define TTCanvasGridSize 20
 #define TTPenWidth 4.0
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -37,17 +38,22 @@
     [super loadView];
     
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    canvasContainerView = [[UIView alloc] initWithFrame:CGRectZero];
+    canvasContainerView.backgroundColor = [UIColor blackColor];
+    canvasContainerView.layer.masksToBounds = YES;
+    [self.view addSubview:canvasContainerView];
         
-    canvasBackgroundView = [[UIImageView alloc] initWithFrame:CGRectZero];
-    canvasBackgroundView.backgroundColor = [UIColor blackColor];
-    [self.view addSubview:canvasBackgroundView];
+    canvasGridView = [[UIView alloc] initWithFrame:CGRectZero];
+    canvasGridView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"canvas_grid"]];
+    [canvasContainerView addSubview:canvasGridView];
     
     canvasView = [[PKCanvasView alloc] initWithFrame:CGRectZero];
     canvasView.backgroundColor = [UIColor clearColor];
     canvasView.opaque = YES;
     canvasView.drawingPolicy = PKCanvasViewDrawingPolicyPencilOnly;
     canvasView.drawing = [[PKDrawing alloc] init];
-    [self.view addSubview:canvasView];
+    [canvasContainerView addSubview:canvasView];
     
     UIImageSymbolConfiguration *symbolConfiguration = [UIImageSymbolConfiguration configurationWithPointSize:20 weight:UIImageSymbolWeightRegular scale:UIImageSymbolScaleMedium];
     
@@ -134,12 +140,18 @@
                                            topToolbarFrame.origin.y + topToolbarFrame.size.height + canvasHeight,
                                            self.view.frame.size.width,
                                            self.view.frame.size.height - topToolbarFrame.origin.y -  topToolbarFrame.size.height - canvasHeight - self.view.safeAreaInsets.bottom);
+    CGSize gridSize = CGSizeMake(floorf(canvasWidth/TTCanvasGridSize)*TTCanvasGridSize + TTCanvasGridSize,
+                                 floorf(canvasHeight/TTCanvasGridSize)*TTCanvasGridSize + TTCanvasGridSize);
     
-    canvasBackgroundView.frame = CGRectMake(0.0,
-                                            topToolbarFrame.origin.y + topToolbarFrame.size.height,
-                                            canvasWidth,
-                                            canvasHeight);
-    canvasView.frame = canvasBackgroundView.frame;
+    canvasContainerView.frame = CGRectMake(0.0,
+                                           topToolbarFrame.origin.y + topToolbarFrame.size.height,
+                                           canvasWidth,
+                                           canvasHeight);
+    canvasGridView.frame = CGRectMake(floorf((canvasContainerView.frame.size.width - gridSize.width) / 2),
+                                      floorf((canvasContainerView.frame.size.height - gridSize.height) / 2),
+                                      gridSize.width,
+                                      gridSize.height);
+    canvasView.frame = canvasContainerView.bounds;
     
     CGFloat offset = 20.0;
     CGSize buttonSize = [MTButton buttonSize];
