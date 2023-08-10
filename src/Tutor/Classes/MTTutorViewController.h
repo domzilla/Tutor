@@ -27,6 +27,10 @@ typedef NS_ENUM(NSUInteger, MTTutorViewControllerInkStyle) {
     MTButton *toggleHeadlineButton;
     MTButton *toggleSubtextButton;
     
+    MTButton *nextCanvasButton;
+    MTButton *previousCanvasButton;
+    UILabel *canvasLabel;
+    
     MTButton *whiteInkButton;
     MTButton *redInkButton;
     MTButton *greenInkButton;
@@ -40,6 +44,8 @@ typedef NS_ENUM(NSUInteger, MTTutorViewControllerInkStyle) {
     UIView *canvasContainerView;
     UIView *canvasGridView;
     PKCanvasView *canvasView;
+    
+    NSMutableArray *canvasViews;
     
     MTInkingTool *whiteInkTool;
     MTInkingTool *redInkTool;

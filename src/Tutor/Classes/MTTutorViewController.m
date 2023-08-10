@@ -14,6 +14,11 @@
 @property (nonatomic, assign) BOOL showsHeadlineTextField;
 @property (nonatomic, assign) BOOL showsSubtextField;
  
++ (PKCanvasView *)canvasView;
+
+- (void)nextCanvasView;
+- (void)previousCanvasView;
+
 - (void)activateTool:(PKTool *)tool;
 
 - (void)layout;
@@ -28,6 +33,7 @@
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])
     {
+        canvasViews = [NSMutableArray array];
         eraserTool = [[PKEraserTool alloc] initWithEraserType:PKEraserTypeBitmap];
     }
     return self;
@@ -48,12 +54,9 @@
     canvasGridView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"canvas_grid"]];
     [canvasContainerView addSubview:canvasGridView];
     
-    canvasView = [[PKCanvasView alloc] initWithFrame:CGRectZero];
-    canvasView.backgroundColor = [UIColor clearColor];
-    canvasView.opaque = YES;
-    canvasView.drawingPolicy = PKCanvasViewDrawingPolicyPencilOnly;
-    canvasView.drawing = [[PKDrawing alloc] init];
+    canvasView = [MTTutorViewController canvasView];
     [canvasContainerView addSubview:canvasView];
+    [canvasViews addObject:canvasView];
     
     headlineTextField = [[UITextField alloc] initWithFrame:CGRectZero];
     headlineTextField.backgroundColor = [UIColor clearColor];
@@ -154,6 +157,31 @@
                           action:@selector(toggleSubtextButtonAction:)
                 forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:toggleSubtextButton];
+    
+    nextCanvasButton = [MTButton buttonWithImage:[UIImage systemImageNamed:@"forward.frame"
+                                                         withConfiguration:symbolConfiguration]];
+    [nextCanvasButton addTarget:self
+                         action:@selector(nextCanvasButtonAction:)
+               forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:nextCanvasButton];
+    
+    previousCanvasButton = [MTButton buttonWithImage:[UIImage systemImageNamed:@"backward.frame"
+                                                             withConfiguration:symbolConfiguration]];
+    previousCanvasButton.enabled = NO;
+    [previousCanvasButton addTarget:self
+                             action:@selector(previousCanvasButtonAction:)
+                   forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:previousCanvasButton];
+    
+    canvasLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    canvasLabel.textColor = [UIColor mt_tintColor];
+    canvasLabel.numberOfLines = 1;
+    canvasLabel.textAlignment = NSTextAlignmentCenter;
+    canvasLabel.font = [UIFont systemFontOfSize:17.0];
+    canvasLabel.minimumScaleFactor = 0.8;
+    canvasLabel.adjustsFontSizeToFitWidth = YES;
+    canvasLabel.text = @"01/01";
+    [self.view addSubview:canvasLabel];
     
     whiteInkButton = [MTButton buttonWithColor:[UIColor whiteColor]];
     [whiteInkButton addTarget:self
@@ -334,6 +362,16 @@
     }];
 }
 
+- (void)nextCanvasButtonAction:(id)sender
+{
+    [self nextCanvasView];
+}
+
+- (void)previousCanvasButtonAction:(id)sender
+{
+    [self previousCanvasView];
+}
+
 - (void)whiteInkButtonAction:(id)sender
 {
     [self activateTool:whiteInkTool];
@@ -372,6 +410,58 @@
 
 #pragma mark Private
 #pragma mark ---
++ (PKCanvasView *)canvasView
+{
+    PKCanvasView *canvasView = [[PKCanvasView alloc] initWithFrame:CGRectZero];
+    canvasView.backgroundColor = [UIColor clearColor];
+    canvasView.opaque = YES;
+    canvasView.drawingPolicy = PKCanvasViewDrawingPolicyPencilOnly;
+    canvasView.drawing = [[PKDrawing alloc] init];
+    
+    return canvasView;
+}
+
+- (void)nextCanvasView
+{
+    NSInteger nextIndex = [canvasViews indexOfObject:canvasView] + 1;
+    PKCanvasView *nextCanvasView = nil;
+    if (nextIndex < [canvasViews count])
+        nextCanvasView = [canvasViews objectAtIndex:nextIndex];
+    
+    if (!nextCanvasView)
+    {
+        nextCanvasView = [MTTutorViewController canvasView];
+        [canvasViews addObject:nextCanvasView];
+    }
+    
+    nextCanvasView.frame = canvasView.frame;
+    nextCanvasView.tool = canvasView.tool;
+    [canvasContainerView insertSubview:nextCanvasView aboveSubview:canvasView];
+    [canvasView removeFromSuperview];
+    canvasView = nextCanvasView;
+    
+    previousCanvasButton.enabled = YES;
+    canvasLabel.text = [NSString stringWithFormat:@"%02ld/%02lu", nextIndex+1, (unsigned long)[canvasViews count]];
+}
+
+- (void)previousCanvasView
+{
+    NSInteger previousIndex = [canvasViews indexOfObject:canvasView] - 1;
+    
+    if (previousIndex < 0)
+        return;
+    
+    PKCanvasView *previousCanvasView = [canvasViews objectAtIndex:previousIndex];
+    previousCanvasView.frame = canvasView.frame;
+    previousCanvasView.tool = canvasView.tool;
+    [canvasContainerView insertSubview:previousCanvasView aboveSubview:canvasView];
+    [canvasView removeFromSuperview];
+    canvasView = previousCanvasView;
+    
+    previousCanvasButton.enabled = previousIndex > 0;
+    canvasLabel.text = [NSString stringWithFormat:@"%02ld/%02lu", previousIndex+1, (unsigned long)[canvasViews count]];
+}
+
 - (void)activateTool:(PKTool *)tool
 {
     if (tool == canvasView.tool)
@@ -453,10 +543,15 @@
     toggleHeadlineButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
     buttonOrigin.x += buttonSize.width + offset;
     toggleSubtextButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
-    buttonOrigin.x += buttonSize.width + 2*offset;
+    
+    buttonOrigin.x = topToolbarFrame.size.width - buttonSize.width - offset;
+    nextCanvasButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
+    buttonOrigin.x -= 60.0;
+    canvasLabel.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, 60.0, buttonSize.height);
+    buttonOrigin.x -= buttonSize.width;
+    previousCanvasButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
     
     buttonOrigin = CGPointMake(offset, bottomToolbarFrame.origin.y + floorf(bottomToolbarFrame.size.height/2 - buttonSize.height/2));
-    
     whiteInkButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
     buttonOrigin.x += buttonSize.width + offset;
     redInkButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
