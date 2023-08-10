@@ -7,6 +7,8 @@
 
 #import "MTButton.h"
 
+#import "UIColor+Tutor.h"
+
 @implementation MTButton
 
 + (UIImage *)imageWithColor:(UIColor *)color
@@ -27,10 +29,9 @@
     CGSize size = [MTButton buttonSize];
     MTButton *button = [MTButton buttonWithType:UIButtonTypeSystem];
     button.frame = CGRectMake(0.0, 0.0, size.width, size.height);
-    button.frame = CGRectMake(0.0, 0.0, 40.0, 40.0);
     button.layer.cornerRadius = size.width/2;
-    button.layer.borderWidth = 2.0;
     button.layer.masksToBounds = YES;
+    button.tintColor = [UIColor mt_tintColor];
     [button setImage:image forState:UIControlStateNormal];
     
     return button;
@@ -43,6 +44,7 @@
     button.frame = CGRectMake(0.0, 0.0, size.width, size.height);
     button.layer.cornerRadius = size.width/2;
     button.layer.masksToBounds = YES;
+    button.tintColor = [UIColor mt_tintColor];
     [button setBackgroundImage:[MTButton imageWithColor:color] forState:UIControlStateNormal];
     [button setBackgroundImage:[MTButton imageWithColor:[color colorWithAlphaComponent:0.3]] forState:UIControlStateHighlighted];
     
@@ -60,14 +62,21 @@
 {
     [super setSelected:selected];
     
-    self.layer.borderColor = selected ? [[self.tintColor colorWithAlphaComponent:0.3] CGColor] : [self.tintColor CGColor];
+    self.layer.borderColor = selected || !self.enabled ? [[self.tintColor colorWithAlphaComponent:0.3] CGColor] : [self.tintColor CGColor];
 }
 
 - (void)setHighlighted:(BOOL)highlighted
 {
     [super setHighlighted:highlighted];
     
-    self.layer.borderColor = highlighted ? [[self.tintColor colorWithAlphaComponent:0.3] CGColor] : [self.tintColor CGColor];
+    self.layer.borderColor = highlighted || !self.enabled ? [[self.tintColor colorWithAlphaComponent:0.3] CGColor] : [self.tintColor CGColor];
+}
+
+- (void)setEnabled:(BOOL)enabled
+{
+    [super setEnabled:enabled];
+    
+    self.layer.borderColor = !enabled ? [[self.tintColor colorWithAlphaComponent:0.3] CGColor] : [self.tintColor CGColor];
 }
 
 
