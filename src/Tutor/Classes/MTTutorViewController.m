@@ -80,7 +80,7 @@
     [canvasContainerView addSubview:headlineTextField];
     
     headlineLabel = [[UILabel alloc] initWithFrame:headlineTextField.bounds];
-    headlineLabel.textColor = [UIColor whiteColor];
+    headlineLabel.textColor = [UIColor mt_primaryColor];
     headlineLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     headlineLabel.userInteractionEnabled = NO;
     headlineLabel.numberOfLines = 0;
@@ -112,7 +112,7 @@
     [canvasContainerView addSubview:subtextField];
     
     subtextLabel = [[UILabel alloc] initWithFrame:subtextField.bounds];
-    subtextLabel.textColor = [UIColor whiteColor];
+    subtextLabel.textColor = [UIColor mt_primaryColor];
     subtextLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     subtextLabel.userInteractionEnabled = NO;
     subtextLabel.numberOfLines = 0;
@@ -185,11 +185,11 @@
     canvasLabel.text = @"01/01";
     [self.view addSubview:canvasLabel];
     
-    whiteInkButton = [MTButton buttonWithColor:[UIColor whiteColor]];
-    [whiteInkButton addTarget:self
-                          action:@selector(whiteInkButtonAction:)
+    primaryInkButton = [MTButton buttonWithColor:[UIColor mt_primaryColor]];
+    [primaryInkButton addTarget:self
+                          action:@selector(primaryInkButtonAction:)
                 forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:whiteInkButton];
+    [self.view addSubview:primaryInkButton];
         
     redInkButton = [MTButton buttonWithColor:[UIColor mt_redColor]];
     [redInkButton addTarget:self
@@ -274,7 +274,7 @@
         inkWidth = 20.0;
     }
     
-    whiteInkTool = [[MTInkingTool alloc] initWithInkType:inkType color:[UIColor whiteColor] width:inkWidth identifier:0];
+    primaryInkTool = [[MTInkingTool alloc] initWithInkType:inkType color:[UIColor mt_primaryColor] width:inkWidth identifier:0];
     redInkTool = [[MTInkingTool alloc] initWithInkType:inkType color:[UIColor mt_redColor] width:inkWidth identifier:1];
     greenInkTool = [[MTInkingTool alloc] initWithInkType:inkType color:[UIColor mt_greenColor] width:inkWidth identifier:2];
     blueInkTool = [[MTInkingTool alloc] initWithInkType:inkType color:[UIColor mt_blueColor] width:inkWidth identifier:3];
@@ -283,7 +283,7 @@
     switch ([activeInkTool identifier])
     {
         case 0:
-            [self activateTool:whiteInkTool];
+            [self activateTool:primaryInkTool];
             break;
         case 1:
             [self activateTool:redInkTool];
@@ -374,9 +374,9 @@
     [self previousCanvasView];
 }
 
-- (void)whiteInkButtonAction:(id)sender
+- (void)primaryInkButtonAction:(id)sender
 {
-    [self activateTool:whiteInkTool];
+    [self activateTool:primaryInkTool];
 }
 
 - (void)redInkButtonAction:(id)sender
@@ -469,7 +469,7 @@
     if (tool == canvasView.tool)
         return;
     
-    whiteInkButton.on = (tool == whiteInkTool);
+    primaryInkButton.on = (tool == primaryInkTool);
     redInkButton.on = (tool == redInkTool);
     greenInkButton.on = (tool == greenInkTool);
     blueInkButton.on = (tool == blueInkTool);
@@ -554,7 +554,7 @@
     previousCanvasButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
     
     buttonOrigin = CGPointMake(offset, bottomToolbarFrame.origin.y + floorf(bottomToolbarFrame.size.height/2 - buttonSize.height/2));
-    whiteInkButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
+    primaryInkButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
     buttonOrigin.x += buttonSize.width + offset;
     redInkButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
     buttonOrigin.x += buttonSize.width + offset;

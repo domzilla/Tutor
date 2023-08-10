@@ -11,6 +11,7 @@
 
 + (UIColor *)mt_tintColor;
 
++ (UIColor *)mt_primaryColor;
 + (UIColor *)mt_redColor;
 + (UIColor *)mt_greenColor;
 + (UIColor *)mt_blueColor;

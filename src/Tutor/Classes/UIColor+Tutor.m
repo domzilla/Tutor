@@ -14,6 +14,11 @@
     return [UIColor blackColor];
 }
 
++ (UIColor *)mt_primaryColor
+{
+    return [UIColor whiteColor];
+}
+
 + (UIColor *)mt_redColor
 {
     return [UIColor colorWithRed:233.0/255 green:54.0/255 blue:100.0/255 alpha:1.0];
