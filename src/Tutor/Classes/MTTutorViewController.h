@@ -11,6 +11,7 @@
 
 #import "MTInkingTool.h"
 #import "MTButton.h"
+#import "MTSegmentedControl.h"
 
 typedef NS_ENUM(NSUInteger, MTTutorViewControllerInkStyle) {
     MTTutorViewControllerInkStylePen = 0,
@@ -39,7 +40,7 @@ typedef NS_ENUM(NSUInteger, MTTutorViewControllerInkStyle) {
     
     MTButton *eraserButton;
     
-    UISegmentedControl *inkStyleControl;
+    MTSegmentedControl *inkStyleControl;
     
     UIView *canvasContainerView;
     UIView *canvasGridView;

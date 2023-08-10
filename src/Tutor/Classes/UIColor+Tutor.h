@@ -11,6 +11,10 @@
 
 + (UIColor *)mt_tintColor;
 
++ (UIColor *)mt_toolbarColor;
++ (UIColor *)mt_secondaryBackgroundColor;
++ (UIColor *)mt_canvasBackgroundColor;
+
 + (UIColor *)mt_primaryColor;
 + (UIColor *)mt_redColor;
 + (UIColor *)mt_greenColor;

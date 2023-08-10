@@ -43,10 +43,10 @@
 {
     [super loadView];
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor mt_toolbarColor];
     
     canvasContainerView = [[UIView alloc] initWithFrame:CGRectZero];
-    canvasContainerView.backgroundColor = [UIColor blackColor];
+    canvasContainerView.backgroundColor = [UIColor mt_canvasBackgroundColor];
     canvasContainerView.layer.masksToBounds = YES;
     [self.view addSubview:canvasContainerView];
         
@@ -222,13 +222,14 @@
                 forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:eraserButton];
     
-    inkStyleControl = [[UISegmentedControl alloc] initWithItems:@[[UIImage systemImageNamed:@"scribble"
+    inkStyleControl = [[MTSegmentedControl alloc] initWithItems:@[[UIImage systemImageNamed:@"scribble"
                                                                           withConfiguration:symbolConfiguration],
                                                                   [UIImage systemImageNamed:@"scribble.variable"
                                                                           withConfiguration:symbolConfiguration],
                                                                   [UIImage systemImageNamed:@"highlighter"
                                                                           withConfiguration:symbolConfiguration]]];
     [inkStyleControl addTarget:self action:@selector(inkStyleControlAction:) forControlEvents:UIControlEventValueChanged];
+    inkStyleControl.backgroundColor = [UIColor mt_secondaryBackgroundColor];
     inkStyleControl.layer.borderWidth = 2.0;
     inkStyleControl.layer.borderColor = [[UIColor mt_tintColor] CGColor];
     [self.view addSubview:inkStyleControl];
@@ -247,6 +248,11 @@
     [super viewWillLayoutSubviews];
     
     [self layout];
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return self.view.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark ? UIStatusBarStyleDarkContent : UIStatusBarStyleLightContent;
 }
 
 

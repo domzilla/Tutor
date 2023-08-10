@@ -11,12 +11,37 @@
 
 + (UIColor *)mt_tintColor
 {
-    return [UIColor blackColor];
+    return [UIColor colorWithDynamicProvider:^UIColor *(UITraitCollection *traitCollection) {
+        return (traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) ? [UIColor blackColor] : [UIColor whiteColor];
+    }];
+}
+
++ (UIColor *)mt_toolbarColor
+{
+    return [UIColor colorWithDynamicProvider:^UIColor *(UITraitCollection *traitCollection) {
+        return (traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) ? [UIColor whiteColor] : [UIColor blackColor];
+    }];
+}
+
++ (UIColor *)mt_secondaryBackgroundColor
+{
+    return [UIColor colorWithDynamicProvider:^UIColor *(UITraitCollection *traitCollection) {
+        return (traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) ? [UIColor colorWithWhite:0.3 alpha:1.0] : [UIColor colorWithWhite:0.8 alpha:1.0];
+    }];
+}
+
++ (UIColor *)mt_canvasBackgroundColor
+{
+    return [UIColor colorWithDynamicProvider:^UIColor *(UITraitCollection *traitCollection) {
+        return (traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) ? [UIColor blackColor] : [UIColor whiteColor];
+    }];
 }
 
 + (UIColor *)mt_primaryColor
 {
-    return [UIColor whiteColor];
+    return [UIColor colorWithDynamicProvider:^UIColor *(UITraitCollection *traitCollection) {
+        return (traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) ? [UIColor whiteColor] : [UIColor blackColor];
+    }];
 }
 
 + (UIColor *)mt_redColor

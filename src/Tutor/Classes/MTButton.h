@@ -10,9 +10,12 @@
 @interface MTButton : UIButton
 {
     BOOL on;
+    UIColor *color;
 }
 
 @property (nonatomic, assign, getter=isOn) BOOL on;
+
+@property (nonatomic, strong, readonly) UIColor *color;
 
 + (MTButton *)buttonWithImage:(UIImage *)image;
 + (MTButton *)buttonWithColor:(UIColor *)color;
