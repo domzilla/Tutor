@@ -18,14 +18,14 @@ typedef NS_ENUM(NSUInteger, MTTutorViewControllerInkStyle) {
     MTTutorViewControllerInkStyleMarker,
 };
 
-@interface MTTutorViewController : UIViewController
+@interface MTTutorViewController : UIViewController <UITextFieldDelegate>
 {
     MTButton *clearCanvasButton;
     MTButton *undoButton;
     MTButton *redoButton;
     
     MTButton *toggleHeadlineButton;
-    MTButton *toggleTextButton;
+    MTButton *toggleSubtextButton;
     
     MTButton *whiteInkButton;
     MTButton *redInkButton;
@@ -51,7 +51,12 @@ typedef NS_ENUM(NSUInteger, MTTutorViewControllerInkStyle) {
     PKEraserTool *eraserTool;
     
     UITextField *headlineTextField;
-    UITextField *textField;
+    UILabel *headlineLabel;
+    BOOL showsHeadlineTextField;
+    
+    UITextField *subtextField;
+    UILabel *subtextLabel;
+    BOOL showsSubtextField;
     
     MTTutorViewControllerInkStyle inkStyle;
 }

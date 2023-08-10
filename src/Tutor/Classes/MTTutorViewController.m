@@ -11,7 +11,12 @@
 
 @interface MTTutorViewController ()
 
+@property (nonatomic, assign) BOOL showsHeadlineTextField;
+@property (nonatomic, assign) BOOL showsSubtextField;
+ 
 - (void)activateTool:(PKTool *)tool;
+
+- (void)layout;
 
 @end
 
@@ -50,6 +55,69 @@
     canvasView.drawing = [[PKDrawing alloc] init];
     [canvasContainerView addSubview:canvasView];
     
+    headlineTextField = [[UITextField alloc] initWithFrame:CGRectZero];
+    headlineTextField.backgroundColor = [UIColor clearColor];
+    headlineTextField.tintColor = [UIColor mt_redColor];
+    headlineTextField.textColor = [UIColor mt_redColor];
+    headlineTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    headlineTextField.textAlignment = NSTextAlignmentCenter;
+    headlineTextField.font = [UIFont boldSystemFontOfSize:60.0];
+    headlineTextField.adjustsFontSizeToFitWidth = YES;
+    headlineTextField.minimumFontSize = 30.0;
+    headlineTextField.delegate = self;
+    UIButton *headlineTextFieldClearButton = [UIButton buttonWithType:UIButtonTypeSystem primaryAction:[UIAction actionWithHandler:^(UIAction *action) {
+        self->headlineTextField.text = nil;
+    }]];
+    headlineTextFieldClearButton.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    [headlineTextFieldClearButton setImage:[UIImage systemImageNamed:@"x.square.fill"] forState:UIControlStateNormal];
+    headlineTextFieldClearButton.frame = CGRectMake(0.0, 0.0, 50.0, 0.0);
+    headlineTextField.rightView = headlineTextFieldClearButton;
+    headlineTextField.rightViewMode = UITextFieldViewModeWhileEditing;
+    [canvasContainerView addSubview:headlineTextField];
+    
+    headlineLabel = [[UILabel alloc] initWithFrame:headlineTextField.bounds];
+    headlineLabel.textColor = [UIColor whiteColor];
+    headlineLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    headlineLabel.userInteractionEnabled = NO;
+    headlineLabel.numberOfLines = 0;
+    headlineLabel.textAlignment = NSTextAlignmentCenter;
+    headlineLabel.font = [UIFont boldSystemFontOfSize:60.0];
+    headlineLabel.minimumScaleFactor = 0.5;
+    headlineLabel.adjustsFontSizeToFitWidth = YES;
+    [headlineTextField addSubview:headlineLabel];
+    
+    subtextField = [[UITextField alloc] initWithFrame:CGRectZero];
+    subtextField.backgroundColor = [UIColor clearColor];
+    subtextField.tintColor = [UIColor mt_redColor];
+    subtextField.textColor = [UIColor mt_redColor];
+    subtextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    subtextField.textAlignment = NSTextAlignmentCenter;
+    subtextField.font = [UIFont systemFontOfSize:40.0];
+    subtextField.adjustsFontSizeToFitWidth = YES;
+    subtextField.minimumFontSize = 20.0;
+    subtextField.delegate = self;
+    UIButton *subtextFieldClearButton = [UIButton buttonWithType:UIButtonTypeSystem primaryAction:[UIAction actionWithHandler:^(UIAction *action) {
+        self->subtextField.text = nil;
+    }]];
+    subtextFieldClearButton.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    [subtextFieldClearButton setImage:[UIImage systemImageNamed:@"x.square.fill"] forState:UIControlStateNormal];
+    subtextFieldClearButton.frame = CGRectMake(0.0, 0.0, 50.0, 0.0);
+    subtextField.rightView = subtextFieldClearButton;
+    subtextField.rightViewMode = UITextFieldViewModeWhileEditing;
+    [canvasContainerView addSubview:subtextField];
+    
+    subtextLabel = [[UILabel alloc] initWithFrame:subtextField.bounds];
+    subtextLabel.textColor = [UIColor whiteColor];
+    subtextLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    subtextLabel.userInteractionEnabled = NO;
+    subtextLabel.numberOfLines = 0;
+    subtextLabel.textAlignment = NSTextAlignmentCenter;
+    subtextLabel.font = [UIFont systemFontOfSize:40.0];
+    subtextLabel.minimumScaleFactor = 0.5;
+    subtextLabel.adjustsFontSizeToFitWidth = YES;
+    [subtextField addSubview:subtextLabel];
+    
+    
     UIImageSymbolConfiguration *symbolConfiguration = [UIImageSymbolConfiguration configurationWithPointSize:20 weight:UIImageSymbolWeightRegular scale:UIImageSymbolScaleMedium];
     
     clearCanvasButton = [MTButton buttonWithImage:[UIImage systemImageNamed:@"trash.fill"
@@ -80,12 +148,12 @@
                 forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:toggleHeadlineButton];
     
-    toggleTextButton = [MTButton buttonWithImage:[UIImage systemImageNamed:@"character.textbox"
+    toggleSubtextButton = [MTButton buttonWithImage:[UIImage systemImageNamed:@"character.textbox"
                                                          withConfiguration:symbolConfiguration]];
-    [toggleTextButton addTarget:self
-                          action:@selector(toggleTextButtonAction:)
+    [toggleSubtextButton addTarget:self
+                          action:@selector(toggleSubtextButtonAction:)
                 forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:toggleTextButton];
+    [self.view addSubview:toggleSubtextButton];
     
     whiteInkButton = [MTButton buttonWithColor:[UIColor whiteColor]];
     [whiteInkButton addTarget:self
@@ -141,68 +209,14 @@
     [super viewDidLoad];
     
     self.inkStyle = MTTutorViewControllerInkStylePen;
+    self.showsHeadlineTextField = YES;
 }
 
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
     
-    CGFloat canvasWidth = self.view.frame.size.width;
-    CGFloat canvasHeight = floorf(canvasWidth/16 * 9);
-    CGRect topToolbarFrame = CGRectMake(0.0,
-                                        self.view.safeAreaInsets.top,
-                                        self.view.frame.size.width,
-                                        floorf((self.view.frame.size.height - canvasHeight) / 2) - self.view.safeAreaInsets.top);
-    CGRect bottomToolbarFrame = CGRectMake(0.0,
-                                           topToolbarFrame.origin.y + topToolbarFrame.size.height + canvasHeight,
-                                           self.view.frame.size.width,
-                                           self.view.frame.size.height - topToolbarFrame.origin.y -  topToolbarFrame.size.height - canvasHeight - self.view.safeAreaInsets.bottom);
-    CGSize gridSize = CGSizeMake(floorf(canvasWidth/TTCanvasGridSize)*TTCanvasGridSize + TTCanvasGridSize,
-                                 floorf(canvasHeight/TTCanvasGridSize)*TTCanvasGridSize + TTCanvasGridSize);
-    
-    canvasContainerView.frame = CGRectMake(0.0,
-                                           topToolbarFrame.origin.y + topToolbarFrame.size.height,
-                                           canvasWidth,
-                                           canvasHeight);
-    canvasGridView.frame = CGRectMake(floorf((canvasContainerView.frame.size.width - gridSize.width) / 2),
-                                      floorf((canvasContainerView.frame.size.height - gridSize.height) / 2),
-                                      gridSize.width,
-                                      gridSize.height);
-    canvasView.frame = canvasContainerView.bounds;
-    
-    CGFloat offset = 20.0;
-    CGSize buttonSize = [MTButton buttonSize];
-    CGPoint buttonOrigin = CGPointMake(offset, topToolbarFrame.origin.y + floorf(topToolbarFrame.size.height/2 - buttonSize.height/2));
-    
-    clearCanvasButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
-    buttonOrigin.x += buttonSize.width + offset;
-    undoButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
-    buttonOrigin.x += buttonSize.width + offset;
-    redoButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
-    buttonOrigin.x += buttonSize.width + 2*offset;
-    
-    toggleHeadlineButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
-    buttonOrigin.x += buttonSize.width + offset;
-    toggleTextButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
-    buttonOrigin.x += buttonSize.width + 2*offset;
-    
-    buttonOrigin = CGPointMake(offset, bottomToolbarFrame.origin.y + floorf(bottomToolbarFrame.size.height/2 - buttonSize.height/2));
-    
-    whiteInkButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
-    buttonOrigin.x += buttonSize.width + offset;
-    redInkButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
-    buttonOrigin.x += buttonSize.width + offset;
-    greenInkButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
-    buttonOrigin.x += buttonSize.width + offset;
-    blueInkButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
-    buttonOrigin.x += buttonSize.width + offset;
-    yellowInkButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
-    buttonOrigin.x += buttonSize.width + 2*offset;
-    
-    inkStyleControl.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, inkStyleControl.frame.size.width, buttonSize.height);
-    buttonOrigin.x += inkStyleControl.frame.size.width + 2*offset;
-    
-    eraserButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
+    [self layout];
 }
 
 
@@ -260,6 +274,34 @@
     inkStyleControl.selectedSegmentIndex = inkStyle;
 }
 
+- (BOOL)showsHeadlineTextField
+{
+    return showsHeadlineTextField;
+}
+
+- (void)setShowsHeadlineTextField:(BOOL)show
+{
+    showsHeadlineTextField = show;
+    toggleHeadlineButton.on = show;
+    headlineTextField.alpha = (show ? 1.0 : 0.0);
+    headlineTextField.userInteractionEnabled = show;
+    [self layout];
+}
+
+- (BOOL)showsSubtextField
+{
+    return showsSubtextField;
+}
+
+- (void)setShowsSubtextField:(BOOL)show
+{
+    showsSubtextField = show;
+    toggleSubtextButton.on = show;
+    subtextField.alpha = (show ? 1.0 : 0.0);
+    subtextField.userInteractionEnabled = show;
+    [self layout];
+}
+
 
 #pragma mark Actions
 #pragma mark ---
@@ -280,12 +322,16 @@
 
 - (void)toggleHeadlineButtonAction:(id)sender
 {
-    
+    [UIView animateWithDuration:0.5 animations:^{
+        self.showsHeadlineTextField = !self->showsHeadlineTextField;
+    }];
 }
 
-- (void)toggleTextButtonAction:(id)sender
+- (void)toggleSubtextButtonAction:(id)sender
 {
-    
+    [UIView animateWithDuration:0.6 animations:^{
+        self.showsSubtextField = !self->showsSubtextField;
+    }];
 }
 
 - (void)whiteInkButtonAction:(id)sender
@@ -342,6 +388,133 @@
     
     if ([tool isKindOfClass:[MTInkingTool class]])
         activeInkTool = (MTInkingTool *)tool;
+}
+
+- (void)layout
+{
+    CGFloat canvasWidth = self.view.frame.size.width;
+    CGFloat canvasHeight = floorf(canvasWidth/16 * 9);
+    CGRect topToolbarFrame = CGRectMake(0.0,
+                                        self.view.safeAreaInsets.top,
+                                        self.view.frame.size.width,
+                                        floorf((self.view.frame.size.height - canvasHeight) / 2) - self.view.safeAreaInsets.top);
+    CGRect bottomToolbarFrame = CGRectMake(0.0,
+                                           topToolbarFrame.origin.y + topToolbarFrame.size.height + canvasHeight,
+                                           self.view.frame.size.width,
+                                           self.view.frame.size.height - topToolbarFrame.origin.y -  topToolbarFrame.size.height - canvasHeight - self.view.safeAreaInsets.bottom);
+    CGSize gridSize = CGSizeMake(floorf(canvasWidth/TTCanvasGridSize)*TTCanvasGridSize + TTCanvasGridSize,
+                                 floorf(canvasHeight/TTCanvasGridSize)*TTCanvasGridSize + TTCanvasGridSize);
+    
+    canvasContainerView.frame = CGRectMake(0.0,
+                                           topToolbarFrame.origin.y + topToolbarFrame.size.height,
+                                           canvasWidth,
+                                           canvasHeight);
+    canvasGridView.frame = CGRectMake(floorf((canvasContainerView.frame.size.width - gridSize.width) / 2),
+                                      floorf((canvasContainerView.frame.size.height - gridSize.height) / 2),
+                                      gridSize.width,
+                                      gridSize.height);
+    
+    CGSize headlineSize = [headlineLabel sizeThatFits:CGSizeMake(headlineLabel.frame.size.width, MAXFLOAT)];
+    CGFloat headlineTextFieldHeight = MIN(140.0, MAX(30.0, headlineSize.height)) + 40.0;
+    headlineTextField.frame = CGRectMake(0.0,
+                                         0.0,
+                                         canvasContainerView.frame.size.width,
+                                         headlineTextFieldHeight);
+    
+    CGSize subtextSize = [subtextLabel sizeThatFits:CGSizeMake(subtextLabel.frame.size.width, MAXFLOAT)];
+    CGFloat subtextFieldHeight = MIN(100.0, MAX(30.0, subtextSize.height)) + 30.0;
+    subtextField.frame = CGRectMake(0.0,
+                                    showsHeadlineTextField ? headlineTextField.frame.origin.y + headlineTextField.frame.size.height : 0.0,
+                                    canvasContainerView.frame.size.width,
+                                    subtextFieldHeight);
+    
+    CGFloat canvasViewY = 0.0;
+    if (showsHeadlineTextField)
+        canvasViewY = headlineTextField.frame.origin.y + headlineTextField.frame.size.height;
+    if (showsSubtextField)
+        canvasViewY = subtextField.frame.origin.y + subtextField.frame.size.height;
+    canvasView.frame = CGRectMake(0.0,
+                                  canvasViewY,
+                                  canvasContainerView.frame.size.width,
+                                  canvasContainerView.frame.size.height);
+    
+    
+    CGFloat offset = 20.0;
+    CGSize buttonSize = [MTButton buttonSize];
+    CGPoint buttonOrigin = CGPointMake(offset, topToolbarFrame.origin.y + floorf(topToolbarFrame.size.height/2 - buttonSize.height/2));
+    
+    clearCanvasButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
+    buttonOrigin.x += buttonSize.width + offset;
+    undoButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
+    buttonOrigin.x += buttonSize.width + offset;
+    redoButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
+    buttonOrigin.x += buttonSize.width + 2*offset;
+    
+    toggleHeadlineButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
+    buttonOrigin.x += buttonSize.width + offset;
+    toggleSubtextButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
+    buttonOrigin.x += buttonSize.width + 2*offset;
+    
+    buttonOrigin = CGPointMake(offset, bottomToolbarFrame.origin.y + floorf(bottomToolbarFrame.size.height/2 - buttonSize.height/2));
+    
+    whiteInkButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
+    buttonOrigin.x += buttonSize.width + offset;
+    redInkButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
+    buttonOrigin.x += buttonSize.width + offset;
+    greenInkButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
+    buttonOrigin.x += buttonSize.width + offset;
+    blueInkButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
+    buttonOrigin.x += buttonSize.width + offset;
+    yellowInkButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
+    buttonOrigin.x += buttonSize.width + 2*offset;
+    
+    inkStyleControl.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, inkStyleControl.frame.size.width, buttonSize.height);
+    buttonOrigin.x += inkStyleControl.frame.size.width + 2*offset;
+    
+    eraserButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
+}
+
+
+#pragma mark UITextFieldDelegate
+#pragma mark ---
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (textField == headlineTextField)
+    {
+        headlineTextField.text = headlineLabel.text;
+        headlineLabel.attributedText = nil;
+    }
+    else if (textField == subtextField)
+    {
+        subtextField.text = subtextLabel.text;
+        subtextLabel.text = nil;
+    }
+    
+    [self layout];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if (textField == headlineTextField)
+    {
+        headlineLabel.attributedText = [[NSAttributedString alloc] initWithString:headlineTextField.text
+                                                                       attributes:@{NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle)}];
+        headlineTextField.text = nil;
+    }
+    else if (textField == subtextField)
+    {
+        subtextLabel.text = subtextField.text;
+        subtextField.text = nil;
+    }
+
+    [self layout];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    
+    return YES;
 }
 
 @end
