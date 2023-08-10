@@ -280,7 +280,10 @@
         inkWidth = 20.0;
     }
     
-    primaryInkTool = [[MTInkingTool alloc] initWithInkType:inkType color:[UIColor mt_primaryColor] width:inkWidth identifier:0];
+    primaryInkTool = [[MTInkingTool alloc] initWithInkType:inkType
+                                                     color:self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark ? [UIColor mt_darkPrimaryColor] : [UIColor mt_primaryColor]
+                                                     width:inkWidth
+                                                identifier:0];
     redInkTool = [[MTInkingTool alloc] initWithInkType:inkType color:[UIColor mt_redColor] width:inkWidth identifier:1];
     greenInkTool = [[MTInkingTool alloc] initWithInkType:inkType color:[UIColor mt_greenColor] width:inkWidth identifier:2];
     blueInkTool = [[MTInkingTool alloc] initWithInkType:inkType color:[UIColor mt_blueColor] width:inkWidth identifier:3];

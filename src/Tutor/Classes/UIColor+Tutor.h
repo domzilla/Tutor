@@ -16,6 +16,7 @@
 + (UIColor *)mt_canvasBackgroundColor;
 
 + (UIColor *)mt_primaryColor;
++ (UIColor *)mt_darkPrimaryColor;
 + (UIColor *)mt_redColor;
 + (UIColor *)mt_greenColor;
 + (UIColor *)mt_blueColor;
