@@ -68,6 +68,7 @@
     headlineTextField.adjustsFontSizeToFitWidth = YES;
     headlineTextField.minimumFontSize = 30.0;
     headlineTextField.delegate = self;
+    [headlineTextField addInteraction:[[UIScribbleInteraction alloc] initWithDelegate:self]];
     UIButton *headlineTextFieldClearButton = [UIButton buttonWithType:UIButtonTypeSystem primaryAction:[UIAction actionWithHandler:^(UIAction *action) {
         self->headlineTextField.text = nil;
     }]];
@@ -99,6 +100,7 @@
     subtextField.adjustsFontSizeToFitWidth = YES;
     subtextField.minimumFontSize = 20.0;
     subtextField.delegate = self;
+    [subtextField addInteraction:[[UIScribbleInteraction alloc] initWithDelegate:self]];
     UIButton *subtextFieldClearButton = [UIButton buttonWithType:UIButtonTypeSystem primaryAction:[UIAction actionWithHandler:^(UIAction *action) {
         self->subtextField.text = nil;
     }]];
@@ -572,6 +574,20 @@
 
 #pragma mark UITextFieldDelegate
 #pragma mark ---
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if (textField == headlineTextField)
+    {
+        return showsHeadlineTextField;
+    }
+    else if (textField == subtextField)
+    {
+        return showsSubtextField;
+    }
+    
+    return YES;
+}
+
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     if (textField == headlineTextField)
@@ -610,6 +626,15 @@
     [textField resignFirstResponder];
     
     return YES;
+}
+
+
+
+#pragma mark UIScribbleInteractionDelegate
+#pragma mark ---
+- (BOOL)scribbleInteraction:(UIScribbleInteraction *)interaction shouldBeginAtLocation:(CGPoint)location
+{
+    return NO;
 }
 
 @end

@@ -18,7 +18,7 @@ typedef NS_ENUM(NSUInteger, MTTutorViewControllerInkStyle) {
     MTTutorViewControllerInkStyleMarker,
 };
 
-@interface MTTutorViewController : UIViewController <UITextFieldDelegate>
+@interface MTTutorViewController : UIViewController <UITextFieldDelegate, UIScribbleInteractionDelegate>
 {
     MTButton *clearCanvasButton;
     MTButton *undoButton;
