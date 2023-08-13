@@ -12,6 +12,7 @@
 #import "MTInkingTool.h"
 #import "MTButton.h"
 #import "MTSegmentedControl.h"
+#import "MTTextField.h"
 
 typedef NS_ENUM(NSUInteger, MTTutorViewControllerInkStyle) {
     MTTutorViewControllerInkStylePen = 0,
@@ -19,7 +20,7 @@ typedef NS_ENUM(NSUInteger, MTTutorViewControllerInkStyle) {
     MTTutorViewControllerInkStyleMarker,
 };
 
-@interface MTTutorViewController : UIViewController <UITextFieldDelegate, UIScribbleInteractionDelegate>
+@interface MTTutorViewController : UIViewController <MTTextFieldDelegate>
 {
     MTButton *clearCanvasButton;
     MTButton *undoButton;
@@ -57,12 +58,10 @@ typedef NS_ENUM(NSUInteger, MTTutorViewControllerInkStyle) {
     
     PKEraserTool *eraserTool;
     
-    UITextField *headlineTextField;
-    UILabel *headlineLabel;
+    MTTextField *headlineTextField;
     BOOL showsHeadlineTextField;
     
-    UITextField *subtextField;
-    UILabel *subtextLabel;
+    MTTextField *subtextField;
     BOOL showsSubtextField;
     
     MTTutorViewControllerInkStyle inkStyle;

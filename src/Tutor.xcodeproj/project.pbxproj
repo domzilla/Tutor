@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F20A738D2A84E315002307F0 /* MTSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F20A738C2A84E315002307F0 /* MTSegmentedControl.m */; };
+		F20AB92C2A88B65B00079807 /* MTTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F20AB92B2A88B65B00079807 /* MTTextField.m */; };
 		F2F035BE2A8231FC002DCE5E /* MTButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F035B42A8231FB002DCE5E /* MTButton.m */; };
 		F2F035BF2A8231FC002DCE5E /* MTSceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F035B72A8231FB002DCE5E /* MTSceneDelegate.m */; };
 		F2F035C02A8231FC002DCE5E /* MTRootWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F035BA2A8231FB002DCE5E /* MTRootWindowController.m */; };
@@ -26,6 +27,8 @@
 /* Begin PBXFileReference section */
 		F20A738B2A84E315002307F0 /* MTSegmentedControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTSegmentedControl.h; sourceTree = "<group>"; };
 		F20A738C2A84E315002307F0 /* MTSegmentedControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTSegmentedControl.m; sourceTree = "<group>"; };
+		F20AB92A2A88B65B00079807 /* MTTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTTextField.h; sourceTree = "<group>"; };
+		F20AB92B2A88B65B00079807 /* MTTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTTextField.m; sourceTree = "<group>"; };
 		F2F035952A82315D002DCE5E /* Tutor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2F035B42A8231FB002DCE5E /* MTButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTButton.m; sourceTree = "<group>"; };
 		F2F035B52A8231FB002DCE5E /* MTRootWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTRootWindowController.h; sourceTree = "<group>"; };
@@ -143,6 +146,8 @@
 				F2F035F52A83ADE5002DCE5E /* MTInkingTool.m */,
 				F20A738B2A84E315002307F0 /* MTSegmentedControl.h */,
 				F20A738C2A84E315002307F0 /* MTSegmentedControl.m */,
+				F20AB92A2A88B65B00079807 /* MTTextField.h */,
+				F20AB92B2A88B65B00079807 /* MTTextField.m */,
 			);
 			name = Controlls;
 			sourceTree = "<group>";
@@ -249,6 +254,7 @@
 				F20A738D2A84E315002307F0 /* MTSegmentedControl.m in Sources */,
 				F2F035BE2A8231FC002DCE5E /* MTButton.m in Sources */,
 				F2F035C22A8231FC002DCE5E /* MTTutorViewController.m in Sources */,
+				F20AB92C2A88B65B00079807 /* MTTextField.m in Sources */,
 				F2F035C12A8231FC002DCE5E /* MTAppDelegate.m in Sources */,
 				F2F035F32A835D3A002DCE5E /* main.m in Sources */,
 				F2F035BF2A8231FC002DCE5E /* MTSceneDelegate.m in Sources */,

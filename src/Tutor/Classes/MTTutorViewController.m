@@ -54,75 +54,25 @@
     canvasGridView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"canvas_grid"]];
     [canvasContainerView addSubview:canvasGridView];
     
+    headlineTextField = [[MTTextField alloc] initWithFrame:CGRectZero];
+    headlineTextField.textFieldDelegate = self;
+    headlineTextField.textColor = [UIColor mt_primaryColor];
+    headlineTextField.font = [UIFont boldSystemFontOfSize:60.0];
+    headlineTextField.minimumFontSize = 30.0;
+    headlineTextField.textAttributes = @{NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle)};
+    [canvasContainerView addSubview:headlineTextField];
+    
+    subtextField = [[MTTextField alloc] initWithFrame:CGRectZero];
+    subtextField.textFieldDelegate = self;
+    subtextField.textColor = [UIColor mt_primaryColor];
+    subtextField.font = [UIFont systemFontOfSize:40.0];
+    subtextField.minimumFontSize = 20.0;
+    [canvasContainerView addSubview:subtextField];
+    
     canvasView = [MTTutorViewController canvasView];
     [canvasContainerView addSubview:canvasView];
     [canvasViews addObject:canvasView];
-    
-    headlineTextField = [[UITextField alloc] initWithFrame:CGRectZero];
-    headlineTextField.backgroundColor = [UIColor clearColor];
-    headlineTextField.tintColor = [UIColor mt_redColor];
-    headlineTextField.textColor = [UIColor mt_redColor];
-    headlineTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    headlineTextField.textAlignment = NSTextAlignmentCenter;
-    headlineTextField.font = [UIFont boldSystemFontOfSize:60.0];
-    headlineTextField.adjustsFontSizeToFitWidth = YES;
-    headlineTextField.minimumFontSize = 30.0;
-    headlineTextField.delegate = self;
-    [headlineTextField addInteraction:[[UIScribbleInteraction alloc] initWithDelegate:self]];
-    UIButton *headlineTextFieldClearButton = [UIButton buttonWithType:UIButtonTypeSystem primaryAction:[UIAction actionWithHandler:^(UIAction *action) {
-        self->headlineTextField.text = nil;
-    }]];
-    headlineTextFieldClearButton.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    [headlineTextFieldClearButton setImage:[UIImage systemImageNamed:@"x.square.fill"] forState:UIControlStateNormal];
-    headlineTextFieldClearButton.frame = CGRectMake(0.0, 0.0, 50.0, 0.0);
-    headlineTextField.rightView = headlineTextFieldClearButton;
-    headlineTextField.rightViewMode = UITextFieldViewModeWhileEditing;
-    [canvasContainerView addSubview:headlineTextField];
-    
-    headlineLabel = [[UILabel alloc] initWithFrame:headlineTextField.bounds];
-    headlineLabel.textColor = [UIColor mt_primaryColor];
-    headlineLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    headlineLabel.userInteractionEnabled = NO;
-    headlineLabel.numberOfLines = 0;
-    headlineLabel.textAlignment = NSTextAlignmentCenter;
-    headlineLabel.font = [UIFont boldSystemFontOfSize:60.0];
-    headlineLabel.minimumScaleFactor = 0.5;
-    headlineLabel.adjustsFontSizeToFitWidth = YES;
-    [headlineTextField addSubview:headlineLabel];
-    
-    subtextField = [[UITextField alloc] initWithFrame:CGRectZero];
-    subtextField.backgroundColor = [UIColor clearColor];
-    subtextField.tintColor = [UIColor mt_redColor];
-    subtextField.textColor = [UIColor mt_redColor];
-    subtextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    subtextField.textAlignment = NSTextAlignmentCenter;
-    subtextField.font = [UIFont systemFontOfSize:40.0];
-    subtextField.adjustsFontSizeToFitWidth = YES;
-    subtextField.minimumFontSize = 20.0;
-    subtextField.delegate = self;
-    [subtextField addInteraction:[[UIScribbleInteraction alloc] initWithDelegate:self]];
-    UIButton *subtextFieldClearButton = [UIButton buttonWithType:UIButtonTypeSystem primaryAction:[UIAction actionWithHandler:^(UIAction *action) {
-        self->subtextField.text = nil;
-    }]];
-    subtextFieldClearButton.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    [subtextFieldClearButton setImage:[UIImage systemImageNamed:@"x.square.fill"] forState:UIControlStateNormal];
-    subtextFieldClearButton.frame = CGRectMake(0.0, 0.0, 50.0, 0.0);
-    subtextField.rightView = subtextFieldClearButton;
-    subtextField.rightViewMode = UITextFieldViewModeWhileEditing;
-    [canvasContainerView addSubview:subtextField];
-    
-    subtextLabel = [[UILabel alloc] initWithFrame:subtextField.bounds];
-    subtextLabel.textColor = [UIColor mt_primaryColor];
-    subtextLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    subtextLabel.userInteractionEnabled = NO;
-    subtextLabel.numberOfLines = 0;
-    subtextLabel.textAlignment = NSTextAlignmentCenter;
-    subtextLabel.font = [UIFont systemFontOfSize:40.0];
-    subtextLabel.minimumScaleFactor = 0.5;
-    subtextLabel.adjustsFontSizeToFitWidth = YES;
-    [subtextField addSubview:subtextLabel];
-    
-    
+        
     UIImageSymbolConfiguration *symbolConfiguration = [UIImageSymbolConfiguration configurationWithPointSize:20 weight:UIImageSymbolWeightRegular scale:UIImageSymbolScaleMedium];
     
     clearCanvasButton = [MTButton buttonWithImage:[UIImage systemImageNamed:@"trash.fill"
@@ -515,14 +465,14 @@
                                       gridSize.width,
                                       gridSize.height);
     
-    CGSize headlineSize = [headlineLabel sizeThatFits:CGSizeMake(headlineLabel.frame.size.width, MAXFLOAT)];
+    CGSize headlineSize = [headlineTextField size];
     CGFloat headlineTextFieldHeight = MIN(140.0, MAX(30.0, headlineSize.height)) + 40.0;
     headlineTextField.frame = CGRectMake(0.0,
                                          0.0,
                                          canvasContainerView.frame.size.width,
                                          headlineTextFieldHeight);
     
-    CGSize subtextSize = [subtextLabel sizeThatFits:CGSizeMake(subtextLabel.frame.size.width, MAXFLOAT)];
+    CGSize subtextSize = [subtextField size];
     CGFloat subtextFieldHeight = MIN(100.0, MAX(30.0, subtextSize.height)) + 30.0;
     subtextField.frame = CGRectMake(0.0,
                                     showsHeadlineTextField ? headlineTextField.frame.origin.y + headlineTextField.frame.size.height : 0.0,
@@ -581,69 +531,13 @@
 }
 
 
-#pragma mark UITextFieldDelegate
-#pragma mark ---
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
-{
-    if (textField == headlineTextField)
-    {
-        return showsHeadlineTextField;
-    }
-    else if (textField == subtextField)
-    {
-        return showsSubtextField;
-    }
-    
-    return YES;
-}
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
+#pragma mark MTTextFieldDelegate
+#pragma mark ---
+- (void)textFieldNeedsLayout:(MTTextField *)textField
 {
-    if (textField == headlineTextField)
-    {
-        headlineTextField.text = headlineLabel.text;
-        headlineLabel.attributedText = nil;
-    }
-    else if (textField == subtextField)
-    {
-        subtextField.text = subtextLabel.text;
-        subtextLabel.text = nil;
-    }
-    
     [self layout];
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-    if (textField == headlineTextField)
-    {
-        headlineLabel.attributedText = [[NSAttributedString alloc] initWithString:headlineTextField.text
-                                                                       attributes:@{NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle)}];
-        headlineTextField.text = nil;
-    }
-    else if (textField == subtextField)
-    {
-        subtextLabel.text = subtextField.text;
-        subtextField.text = nil;
-    }
-
-    [self layout];
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-    
-    return YES;
-}
-
-
-
-#pragma mark UIScribbleInteractionDelegate
-#pragma mark ---
-- (BOOL)scribbleInteraction:(UIScribbleInteraction *)interaction shouldBeginAtLocation:(CGPoint)location
-{
-    return NO;
-}
 
 @end
