@@ -335,27 +335,42 @@
 
 - (void)primaryInkButtonAction:(id)sender
 {
-    [self activateTool:primaryInkTool];
+    if (headlineTextField.editing)
+        headlineTextField.textColor = [UIColor mt_primaryColor];
+    else
+        [self activateTool:primaryInkTool];
 }
 
 - (void)redInkButtonAction:(id)sender
 {
-    [self activateTool:redInkTool];
+    if (headlineTextField.editing)
+        headlineTextField.textColor = [UIColor mt_redColor];
+    else
+        [self activateTool:redInkTool];
 }
 
 - (void)greenInkButtonAction:(id)sender
 {
-    [self activateTool:greenInkTool];
+    if (headlineTextField.editing)
+        headlineTextField.textColor = [UIColor mt_greenColor];
+    else
+        [self activateTool:greenInkTool];
 }
 
 - (void)blueInkButtonAction:(id)sender
 {
-    [self activateTool:blueInkTool];
+    if (headlineTextField.editing)
+        headlineTextField.textColor = [UIColor mt_blueColor];
+    else
+        [self activateTool:blueInkTool];
 }
 
 - (void)yellowInkButtonAction:(id)sender
 {
-    [self activateTool:yellowInkTool];
+    if (headlineTextField.editing)
+        headlineTextField.textColor = [UIColor mt_yellowColor];
+    else
+        [self activateTool:yellowInkTool];
 }
 
 - (void)eraserButtonAction:(id)sender
