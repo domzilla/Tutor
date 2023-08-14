@@ -459,7 +459,7 @@
 - (void)layout
 {
     CGFloat canvasWidth = self.view.frame.size.width;
-    CGFloat canvasHeight = floorf(canvasWidth/16 * 9);
+    CGFloat canvasHeight = floorf(canvasWidth/16 * 9) + 4; //+4 gives some vertical space when cropping the canvas for video to 1920x1080
     CGRect topToolbarFrame = CGRectMake(0.0,
                                         self.view.safeAreaInsets.top,
                                         self.view.frame.size.width,
