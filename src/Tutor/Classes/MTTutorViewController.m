@@ -345,7 +345,12 @@
     }
     else
     {
-        [recorder stop];
+        __weak __typeof__(self) weakSelf = self;
+        [recorder stopWithCompletionHandler:^{
+            __strong __typeof__(weakSelf) strongSelf = weakSelf; if (!strongSelf) return;
+            strongSelf->recorder = nil;
+        }];
+        
         [recordButton setImage:[UIImage systemImageNamed:@"record.circle"
                                        withConfiguration:symbolConfiguration]
                       forState:UIControlStateNormal];

@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (id)initWithView:(UIView *)view;
 
 - (void)start;
-- (void)stop;
+- (void)stopWithCompletionHandler:(void (^)(void))handler;
 
 @end
 

@@ -99,14 +99,28 @@
     self.recording = YES;
 }
 
-- (void)stop
+- (void)stopWithCompletionHandler:(void (^)(void))handler
 {
     [displayLink invalidate];
     displayLink = nil;
     
     self.recording = NO;
     
-    [self completeRecordingSession];
+    [videoWriterInput markAsFinished];
+        
+    __weak __typeof__(self) weakSelf = self;
+    [videoWriter finishWritingWithCompletionHandler:^{
+        
+        NSLog(@"DONE!");
+        __strong __typeof__(weakSelf) strongSelf = weakSelf; if (!strongSelf) return;
+        
+        strongSelf->avAdaptor = nil;
+        strongSelf->videoWriterInput = nil;
+        strongSelf->videoWriter = nil;
+        
+        if (handler)
+            handler();
+    }];
 }
 
 
@@ -153,20 +167,6 @@
             NSLog(@"Error creating pixel buffer:  status=%d", status);
         }
     }
-}
-
-- (void)completeRecordingSession
-{
-    [videoWriterInput markAsFinished];
-        
-    __weak __typeof__(self) weakSelf = self;
-    [videoWriter finishWritingWithCompletionHandler:^{
-        NSLog(@"DONE!");
-        __strong __typeof__(weakSelf) strongSelf = weakSelf; if (!strongSelf) return;
-        strongSelf->avAdaptor = nil;
-        strongSelf->videoWriterInput = nil;
-        strongSelf->videoWriter = nil;
-    }];
 }
 
 @end
