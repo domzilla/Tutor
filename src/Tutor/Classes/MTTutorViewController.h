@@ -13,6 +13,7 @@
 #import "MTButton.h"
 #import "MTSegmentedControl.h"
 #import "MTTextField.h"
+#import "MTRecorder.h"
 
 typedef NS_ENUM(NSUInteger, MTTutorViewControllerInkStyle) {
     MTTutorViewControllerInkStylePen = 0,
@@ -28,6 +29,8 @@ typedef NS_ENUM(NSUInteger, MTTutorViewControllerInkStyle) {
     
     MTButton *toggleHeadlineButton;
     MTButton *toggleSubtextButton;
+    
+    MTButton *recordButton;
     
     MTButton *nextCanvasButton;
     MTButton *previousCanvasButton;
@@ -65,6 +68,8 @@ typedef NS_ENUM(NSUInteger, MTTutorViewControllerInkStyle) {
     BOOL showsSubtextField;
     
     MTTutorViewControllerInkStyle inkStyle;
+    
+    MTRecorder *recorder;
 }
 
 @property (nonatomic, assign) MTTutorViewControllerInkStyle inkStyle;

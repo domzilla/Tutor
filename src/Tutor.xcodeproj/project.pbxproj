@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		F20A738D2A84E315002307F0 /* MTSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F20A738C2A84E315002307F0 /* MTSegmentedControl.m */; };
 		F20AB92C2A88B65B00079807 /* MTTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F20AB92B2A88B65B00079807 /* MTTextField.m */; };
+		F214709B2BF3843100AF4117 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F214709A2BF3843100AF4117 /* AVFoundation.framework */; };
+		F214709D2BF3866200AF4117 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F214709C2BF3866200AF4117 /* CoreVideo.framework */; };
+		F243389A2BF363A200CFC654 /* MTRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = F24338992BF363A200CFC654 /* MTRecorder.m */; };
 		F2F035BE2A8231FC002DCE5E /* MTButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F035B42A8231FB002DCE5E /* MTButton.m */; };
 		F2F035BF2A8231FC002DCE5E /* MTSceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F035B72A8231FB002DCE5E /* MTSceneDelegate.m */; };
 		F2F035C02A8231FC002DCE5E /* MTRootWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F035BA2A8231FB002DCE5E /* MTRootWindowController.m */; };
@@ -29,6 +32,10 @@
 		F20A738C2A84E315002307F0 /* MTSegmentedControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTSegmentedControl.m; sourceTree = "<group>"; };
 		F20AB92A2A88B65B00079807 /* MTTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTTextField.h; sourceTree = "<group>"; };
 		F20AB92B2A88B65B00079807 /* MTTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTTextField.m; sourceTree = "<group>"; };
+		F214709A2BF3843100AF4117 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		F214709C2BF3866200AF4117 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		F24338982BF363A200CFC654 /* MTRecorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTRecorder.h; sourceTree = "<group>"; };
+		F24338992BF363A200CFC654 /* MTRecorder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTRecorder.m; sourceTree = "<group>"; };
 		F2F035952A82315D002DCE5E /* Tutor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2F035B42A8231FB002DCE5E /* MTButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTButton.m; sourceTree = "<group>"; };
 		F2F035B52A8231FB002DCE5E /* MTRootWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTRootWindowController.h; sourceTree = "<group>"; };
@@ -58,15 +65,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F214709B2BF3843100AF4117 /* AVFoundation.framework in Frameworks */,
 				F2F035C52A82320A002DCE5E /* PencilKit.framework in Frameworks */,
 				F2F035C92A823237002DCE5E /* Foundation.framework in Frameworks */,
 				F2F035C72A82322B002DCE5E /* UIKit.framework in Frameworks */,
+				F214709D2BF3866200AF4117 /* CoreVideo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F24338972BF3634700CFC654 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				F24338982BF363A200CFC654 /* MTRecorder.h */,
+				F24338992BF363A200CFC654 /* MTRecorder.m */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
 		F2F0358C2A82315D002DCE5E = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +122,7 @@
 				F2F035DA2A823D95002DCE5E /* WindowController */,
 				F2F035DB2A823DA1002DCE5E /* ViewController */,
 				F2F035DC2A823DAF002DCE5E /* Controlls */,
+				F24338972BF3634700CFC654 /* Data */,
 				F2F035DD2A823DB8002DCE5E /* Categories */,
 			);
 			path = Classes;
@@ -112,6 +131,8 @@
 		F2F035C32A823209002DCE5E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F214709C2BF3866200AF4117 /* CoreVideo.framework */,
+				F214709A2BF3843100AF4117 /* AVFoundation.framework */,
 				F2F035C82A823237002DCE5E /* Foundation.framework */,
 				F2F035C62A82322B002DCE5E /* UIKit.framework */,
 				F2F035C42A823209002DCE5E /* PencilKit.framework */,
@@ -254,6 +275,7 @@
 				F20A738D2A84E315002307F0 /* MTSegmentedControl.m in Sources */,
 				F2F035BE2A8231FC002DCE5E /* MTButton.m in Sources */,
 				F2F035C22A8231FC002DCE5E /* MTTutorViewController.m in Sources */,
+				F243389A2BF363A200CFC654 /* MTRecorder.m in Sources */,
 				F20AB92C2A88B65B00079807 /* MTTextField.m in Sources */,
 				F2F035C12A8231FC002DCE5E /* MTAppDelegate.m in Sources */,
 				F2F035F32A835D3A002DCE5E /* main.m in Sources */,

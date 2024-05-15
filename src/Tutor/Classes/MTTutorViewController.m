@@ -110,6 +110,13 @@
                 forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:toggleSubtextButton];
     
+    recordButton = [MTButton buttonWithImage:[UIImage systemImageNamed:@"record.circle"
+                                                         withConfiguration:symbolConfiguration]];
+    [recordButton addTarget:self
+                     action:@selector(recordButtonAction:)
+           forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:recordButton];
+    
     nextCanvasButton = [MTButton buttonWithImage:[UIImage systemImageNamed:@"forward.frame"
                                                          withConfiguration:symbolConfiguration]];
     [nextCanvasButton addTarget:self
@@ -323,6 +330,28 @@
     }];
 }
 
+- (void)recordButtonAction:(id)sender
+{
+    if (!recorder)
+        recorder = [[MTRecorder alloc] initWithView:canvasContainerView];
+    
+    UIImageSymbolConfiguration *symbolConfiguration = [UIImageSymbolConfiguration configurationWithPointSize:20 weight:UIImageSymbolWeightRegular scale:UIImageSymbolScaleMedium];
+    if (!recorder.recording)
+    {
+        [recorder start];
+        [recordButton setImage:[UIImage systemImageNamed:@"stop.circle.fill"
+                                       withConfiguration:symbolConfiguration]
+                      forState:UIControlStateNormal];
+    }
+    else
+    {
+        [recorder stop];
+        [recordButton setImage:[UIImage systemImageNamed:@"record.circle"
+                                       withConfiguration:symbolConfiguration]
+                      forState:UIControlStateNormal];
+    }
+}
+
 - (void)nextCanvasButtonAction:(id)sender
 {
     [self nextCanvasView];
@@ -526,6 +555,8 @@
     canvasLabel.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, 60.0, buttonSize.height);
     buttonOrigin.x -= buttonSize.width;
     previousCanvasButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
+    buttonOrigin.x -= buttonSize.width + offset;
+    recordButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
     
     buttonOrigin = CGPointMake(offset, bottomToolbarFrame.origin.y + floorf(bottomToolbarFrame.size.height/2 - buttonSize.height/2));
     primaryInkButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
