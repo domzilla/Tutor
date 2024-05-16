@@ -15,6 +15,7 @@
 
 @property (nonatomic, assign) BOOL showsHeadlineTextField;
 @property (nonatomic, assign) BOOL showsSubtextField;
+@property (nonatomic, assign) BOOL textFieldsLocked;
  
 + (PKCanvasView *)canvasView;
 
@@ -56,6 +57,10 @@
     canvasGridView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"canvas_grid"]];
     [canvasContainerView addSubview:canvasGridView];
     
+    canvasView = [MTTutorViewController canvasView];
+    [canvasContainerView addSubview:canvasView];
+    [canvasViews addObject:canvasView];
+    
     headlineTextField = [[MTTextField alloc] initWithFrame:CGRectZero];
     headlineTextField.textFieldDelegate = self;
     headlineTextField.textColor = [UIColor mt_primaryColor];
@@ -71,10 +76,6 @@
     subtextField.minimumFontSize = 20.0;
     [canvasContainerView addSubview:subtextField];
     
-    canvasView = [MTTutorViewController canvasView];
-    [canvasContainerView addSubview:canvasView];
-    [canvasViews addObject:canvasView];
-        
     UIImageSymbolConfiguration *symbolConfiguration = [UIImageSymbolConfiguration configurationWithPointSize:20 weight:UIImageSymbolWeightRegular scale:UIImageSymbolScaleMedium];
     
     clearCanvasButton = [MTButton buttonWithImage:[UIImage systemImageNamed:@"trash.fill"
@@ -111,6 +112,13 @@
                           action:@selector(toggleSubtextButtonAction:)
                 forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:toggleSubtextButton];
+    
+    lockTextFieldsButton = [MTButton buttonWithImage:[UIImage systemImageNamed:@"lock.square"
+                                                           withConfiguration:symbolConfiguration]];
+    [lockTextFieldsButton addTarget:self
+                           action:@selector(lockTextFieldsButtonAction:)
+                 forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:lockTextFieldsButton];
     
     recordButton = [MTButton buttonWithImage:[UIImage systemImageNamed:@"record.circle"
                                                          withConfiguration:symbolConfiguration]];
@@ -292,7 +300,7 @@
     showsHeadlineTextField = show;
     toggleHeadlineButton.on = show;
     headlineTextField.alpha = (show ? 1.0 : 0.0);
-    headlineTextField.userInteractionEnabled = show;
+    headlineTextField.userInteractionEnabled = show && !textFieldsLocked;
     [self layout];
 }
 
@@ -306,10 +314,25 @@
     showsSubtextField = show;
     toggleSubtextButton.on = show;
     subtextField.alpha = (show ? 1.0 : 0.0);
-    subtextField.userInteractionEnabled = show;
+    subtextField.userInteractionEnabled = show && !textFieldsLocked;
     [self layout];
 }
 
+- (BOOL)textFieldsLocked
+{
+    return textFieldsLocked;
+}
+
+- (void)setTextFieldsLocked:(BOOL)locked
+{
+    textFieldsLocked = locked;
+    lockTextFieldsButton.on = locked;
+    
+    headlineTextField.userInteractionEnabled = showsHeadlineTextField && !locked;
+    subtextField.userInteractionEnabled = showsSubtextField && !locked;
+    
+    [self layout];
+}
 
 #pragma mark Actions
 #pragma mark ---
@@ -340,6 +363,11 @@
     [UIView animateWithDuration:0.6 animations:^{
         self.showsSubtextField = !self->showsSubtextField;
     }];
+}
+
+- (void)lockTextFieldsButtonAction:(id)sender
+{
+    self.textFieldsLocked = !self.textFieldsLocked;
 }
 
 - (void)recordButtonAction:(id)sender
@@ -549,15 +577,14 @@
                                     subtextFieldHeight);
     
     CGFloat canvasViewY = 0.0;
-    if (showsHeadlineTextField)
+    if (showsHeadlineTextField && !textFieldsLocked)
         canvasViewY = headlineTextField.frame.origin.y + headlineTextField.frame.size.height;
-    if (showsSubtextField)
+    if (showsSubtextField  && !textFieldsLocked)
         canvasViewY = subtextField.frame.origin.y + subtextField.frame.size.height;
     canvasView.frame = CGRectMake(0.0,
                                   canvasViewY,
                                   canvasContainerView.frame.size.width,
                                   canvasContainerView.frame.size.height);
-    
     
     CGFloat offset = 20.0;
     CGSize buttonSize = [MTButton buttonSize];
@@ -573,6 +600,8 @@
     toggleHeadlineButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
     buttonOrigin.x += buttonSize.width + offset;
     toggleSubtextButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
+    buttonOrigin.x += buttonSize.width + offset;
+    lockTextFieldsButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
     
     buttonOrigin.x = topToolbarFrame.size.width - buttonSize.width - offset;
     nextCanvasButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);

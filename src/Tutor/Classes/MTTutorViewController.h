@@ -30,6 +30,7 @@ typedef NS_ENUM(NSUInteger, MTTutorViewControllerInkStyle) {
     
     MTButton *toggleHeadlineButton;
     MTButton *toggleSubtextButton;
+    MTButton *lockTextFieldsButton;
     
     MTButton *recordButton;
     
@@ -66,9 +67,9 @@ typedef NS_ENUM(NSUInteger, MTTutorViewControllerInkStyle) {
     
     MTTextField *headlineTextField;
     BOOL showsHeadlineTextField;
-    
     MTTextField *subtextField;
     BOOL showsSubtextField;
+    BOOL textFieldsLocked;
     
     MTTutorViewControllerInkStyle inkStyle;
     
