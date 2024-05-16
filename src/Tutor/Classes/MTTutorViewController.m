@@ -9,6 +9,8 @@
 
 #import "UIColor+Tutor.h"
 
+#import "MTVideoPlayerControllsViewController.h"
+
 @interface MTTutorViewController ()
 
 @property (nonatomic, assign) BOOL showsHeadlineTextField;
@@ -179,6 +181,13 @@
                 forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:eraserButton];
     
+    videoButton = [MTButton buttonWithImage:[UIImage systemImageNamed:@"play.rectangle"
+                                                     withConfiguration:symbolConfiguration]];
+    [videoButton addTarget:self
+                    action:@selector(videoButtonAction:)
+          forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:videoButton];
+    
     inkStyleControl = [[MTSegmentedControl alloc] initWithItems:@[[UIImage systemImageNamed:@"scribble"
                                                                           withConfiguration:symbolConfiguration],
                                                                   [UIImage systemImageNamed:@"scribble.variable"
@@ -190,6 +199,9 @@
     inkStyleControl.layer.borderWidth = 2.0;
     inkStyleControl.layer.borderColor = [[UIColor mt_tintColor] CGColor];
     [self.view addSubview:inkStyleControl];
+    
+    videoPlayerView = [[MTVideoPlayerView alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:videoPlayerView];
 }
 
 - (void)viewDidLoad
@@ -412,6 +424,14 @@
     [self activateTool:eraserTool];
 }
 
+- (void)videoButtonAction:(id)sender
+{
+    MTVideoPlayerControllsViewController *videoPlayerControllsViewController = [[MTVideoPlayerControllsViewController alloc] initWithVideoPlayerView:videoPlayerView];
+    videoPlayerControllsViewController.modalPresentationStyle = UIModalPresentationPopover;
+    videoPlayerControllsViewController.popoverPresentationController.sourceView = sender;
+    [self presentViewController:videoPlayerControllsViewController animated:YES completion:nil];
+}
+
 - (void)inkStyleControlAction:(id)sender
 {
     self.inkStyle = (MTTutorViewControllerInkStyle)inkStyleControl.selectedSegmentIndex;
@@ -579,6 +599,11 @@
     buttonOrigin.x += inkStyleControl.frame.size.width + 2*offset;
     
     eraserButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
+    
+    buttonOrigin.x = bottomToolbarFrame.size.width - buttonSize.width - offset;
+    videoButton.frame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonSize.width, buttonSize.height);
+    
+    videoPlayerView.maximumViewSize = CGSizeMake(canvasWidth, canvasHeight);
 }
 
 

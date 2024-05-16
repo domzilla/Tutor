@@ -14,6 +14,7 @@
 #import "MTSegmentedControl.h"
 #import "MTTextField.h"
 #import "MTRecorder.h"
+#import "MTVideoPlayerView.h"
 
 typedef NS_ENUM(NSUInteger, MTTutorViewControllerInkStyle) {
     MTTutorViewControllerInkStylePen = 0,
@@ -46,6 +47,8 @@ typedef NS_ENUM(NSUInteger, MTTutorViewControllerInkStyle) {
     
     MTSegmentedControl *inkStyleControl;
     
+    MTButton *videoButton;
+    
     UIView *canvasContainerView;
     UIView *canvasGridView;
     PKCanvasView *canvasView;
@@ -70,6 +73,8 @@ typedef NS_ENUM(NSUInteger, MTTutorViewControllerInkStyle) {
     MTTutorViewControllerInkStyle inkStyle;
     
     MTRecorder *recorder;
+    
+    MTVideoPlayerView *videoPlayerView;
 }
 
 @property (nonatomic, assign) MTTutorViewControllerInkStyle inkStyle;
