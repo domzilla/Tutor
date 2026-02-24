@@ -3,70 +3,48 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F20A738D2A84E315002307F0 /* MTSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F20A738C2A84E315002307F0 /* MTSegmentedControl.m */; };
-		F20AB92C2A88B65B00079807 /* MTTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F20AB92B2A88B65B00079807 /* MTTextField.m */; };
 		F214709B2BF3843100AF4117 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F214709A2BF3843100AF4117 /* AVFoundation.framework */; };
 		F214709D2BF3866200AF4117 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F214709C2BF3866200AF4117 /* CoreVideo.framework */; };
-		F21470B12BF4A0E500AF4117 /* MTVideoPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F21470B02BF4A0E500AF4117 /* MTVideoPlayerView.m */; };
-		F21470B42BF4A8CF00AF4117 /* MTVideoPlayerControllsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F21470B32BF4A8CF00AF4117 /* MTVideoPlayerControllsViewController.m */; };
 		F21470CA2BF4B0AD00AF4117 /* UniformTypeIdentifiers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F21470C92BF4B0AD00AF4117 /* UniformTypeIdentifiers.framework */; };
-		F243389A2BF363A200CFC654 /* MTRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = F24338992BF363A200CFC654 /* MTRecorder.m */; };
-		F2F035BE2A8231FC002DCE5E /* MTButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F035B42A8231FB002DCE5E /* MTButton.m */; };
-		F2F035BF2A8231FC002DCE5E /* MTSceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F035B72A8231FB002DCE5E /* MTSceneDelegate.m */; };
-		F2F035C02A8231FC002DCE5E /* MTRootWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F035BA2A8231FB002DCE5E /* MTRootWindowController.m */; };
-		F2F035C12A8231FC002DCE5E /* MTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F035BB2A8231FB002DCE5E /* MTAppDelegate.m */; };
-		F2F035C22A8231FC002DCE5E /* MTTutorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F035BD2A8231FB002DCE5E /* MTTutorViewController.m */; };
 		F2F035C52A82320A002DCE5E /* PencilKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F035C42A823209002DCE5E /* PencilKit.framework */; };
 		F2F035C72A82322B002DCE5E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F035C62A82322B002DCE5E /* UIKit.framework */; };
 		F2F035C92A823237002DCE5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F035C82A823237002DCE5E /* Foundation.framework */; };
-		F2F035D92A823D80002DCE5E /* UIColor+Tutor.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F035D82A823D80002DCE5E /* UIColor+Tutor.m */; };
-		F2F035ED2A835D2B002DCE5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2F035EB2A835D2B002DCE5E /* Assets.xcassets */; };
-		F2F035F12A835D33002DCE5E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2F035EF2A835D33002DCE5E /* LaunchScreen.storyboard */; };
-		F2F035F32A835D3A002DCE5E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F035F22A835D3A002DCE5E /* main.m */; };
-		F2F035F62A83ADE5002DCE5E /* MTInkingTool.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F035F52A83ADE5002DCE5E /* MTInkingTool.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F20A738B2A84E315002307F0 /* MTSegmentedControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTSegmentedControl.h; sourceTree = "<group>"; };
-		F20A738C2A84E315002307F0 /* MTSegmentedControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTSegmentedControl.m; sourceTree = "<group>"; };
-		F20AB92A2A88B65B00079807 /* MTTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTTextField.h; sourceTree = "<group>"; };
-		F20AB92B2A88B65B00079807 /* MTTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTTextField.m; sourceTree = "<group>"; };
 		F214709A2BF3843100AF4117 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		F214709C2BF3866200AF4117 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
-		F21470AF2BF4A0E500AF4117 /* MTVideoPlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTVideoPlayerView.h; sourceTree = "<group>"; };
-		F21470B02BF4A0E500AF4117 /* MTVideoPlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTVideoPlayerView.m; sourceTree = "<group>"; };
-		F21470B22BF4A8CF00AF4117 /* MTVideoPlayerControllsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTVideoPlayerControllsViewController.h; sourceTree = "<group>"; };
-		F21470B32BF4A8CF00AF4117 /* MTVideoPlayerControllsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTVideoPlayerControllsViewController.m; sourceTree = "<group>"; };
 		F21470C92BF4B0AD00AF4117 /* UniformTypeIdentifiers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UniformTypeIdentifiers.framework; path = System/Library/Frameworks/UniformTypeIdentifiers.framework; sourceTree = SDKROOT; };
-		F24338982BF363A200CFC654 /* MTRecorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTRecorder.h; sourceTree = "<group>"; };
-		F24338992BF363A200CFC654 /* MTRecorder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTRecorder.m; sourceTree = "<group>"; };
 		F2F035952A82315D002DCE5E /* Tutor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutor.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F2F035B42A8231FB002DCE5E /* MTButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTButton.m; sourceTree = "<group>"; };
-		F2F035B52A8231FB002DCE5E /* MTRootWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTRootWindowController.h; sourceTree = "<group>"; };
-		F2F035B62A8231FB002DCE5E /* MTTutorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTTutorViewController.h; sourceTree = "<group>"; };
-		F2F035B72A8231FB002DCE5E /* MTSceneDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTSceneDelegate.m; sourceTree = "<group>"; };
-		F2F035B82A8231FB002DCE5E /* MTAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTAppDelegate.h; sourceTree = "<group>"; };
-		F2F035B92A8231FB002DCE5E /* MTButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTButton.h; sourceTree = "<group>"; };
-		F2F035BA2A8231FB002DCE5E /* MTRootWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTRootWindowController.m; sourceTree = "<group>"; };
-		F2F035BB2A8231FB002DCE5E /* MTAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTAppDelegate.m; sourceTree = "<group>"; };
-		F2F035BC2A8231FB002DCE5E /* MTSceneDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTSceneDelegate.h; sourceTree = "<group>"; };
-		F2F035BD2A8231FB002DCE5E /* MTTutorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTTutorViewController.m; sourceTree = "<group>"; };
 		F2F035C42A823209002DCE5E /* PencilKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PencilKit.framework; path = System/Library/Frameworks/PencilKit.framework; sourceTree = SDKROOT; };
 		F2F035C62A82322B002DCE5E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F2F035C82A823237002DCE5E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		F2F035D72A823D80002DCE5E /* UIColor+Tutor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+Tutor.h"; sourceTree = "<group>"; };
-		F2F035D82A823D80002DCE5E /* UIColor+Tutor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Tutor.m"; sourceTree = "<group>"; };
-		F2F035EB2A835D2B002DCE5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F2F035EC2A835D2B002DCE5E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F2F035F02A835D33002DCE5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		F2F035F22A835D3A002DCE5E /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		F2F035F42A83ADE5002DCE5E /* MTInkingTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTInkingTool.h; sourceTree = "<group>"; };
-		F2F035F52A83ADE5002DCE5E /* MTInkingTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTInkingTool.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		F25D69BE2F4D935600DD1ED0 /* Exceptions for "Tutor" folder in "Tutor" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Resources/Info.plist,
+			);
+			target = F2F035942A82315D002DCE5E /* Tutor */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		F25D69AD2F4D931C00DD1ED0 /* Tutor */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				F25D69BE2F4D935600DD1ED0 /* Exceptions for "Tutor" folder in "Tutor" target */,
+			);
+			path = Tutor;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		F2F035922A82315D002DCE5E /* Frameworks */ = {
@@ -85,28 +63,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F21470AE2BF4A0CA00AF4117 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				F21470AF2BF4A0E500AF4117 /* MTVideoPlayerView.h */,
-				F21470B02BF4A0E500AF4117 /* MTVideoPlayerView.m */,
-			);
-			name = Views;
-			sourceTree = "<group>";
-		};
-		F24338972BF3634700CFC654 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				F24338982BF363A200CFC654 /* MTRecorder.h */,
-				F24338992BF363A200CFC654 /* MTRecorder.m */,
-			);
-			name = Data;
-			sourceTree = "<group>";
-		};
 		F2F0358C2A82315D002DCE5E = {
 			isa = PBXGroup;
 			children = (
-				F2F035972A82315D002DCE5E /* Tutor */,
+				F25D69AD2F4D931C00DD1ED0 /* Tutor */,
 				F2F035962A82315D002DCE5E /* Products */,
 				F2F035C32A823209002DCE5E /* Frameworks */,
 			);
@@ -120,33 +80,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F2F035972A82315D002DCE5E /* Tutor */ = {
-			isa = PBXGroup;
-			children = (
-				F2F035B32A8231FB002DCE5E /* Classes */,
-				F2F035E92A835CF8002DCE5E /* Resources */,
-				F2F035EA2A835D06002DCE5E /* Other Sources */,
-			);
-			path = Tutor;
-			sourceTree = "<group>";
-		};
-		F2F035B32A8231FB002DCE5E /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				F2F035B82A8231FB002DCE5E /* MTAppDelegate.h */,
-				F2F035BB2A8231FB002DCE5E /* MTAppDelegate.m */,
-				F2F035BC2A8231FB002DCE5E /* MTSceneDelegate.h */,
-				F2F035B72A8231FB002DCE5E /* MTSceneDelegate.m */,
-				F2F035DA2A823D95002DCE5E /* WindowController */,
-				F2F035DB2A823DA1002DCE5E /* ViewController */,
-				F21470AE2BF4A0CA00AF4117 /* Views */,
-				F2F035DC2A823DAF002DCE5E /* Controlls */,
-				F24338972BF3634700CFC654 /* Data */,
-				F2F035DD2A823DB8002DCE5E /* Categories */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
 		F2F035C32A823209002DCE5E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,68 +91,6 @@
 				F2F035C42A823209002DCE5E /* PencilKit.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		F2F035DA2A823D95002DCE5E /* WindowController */ = {
-			isa = PBXGroup;
-			children = (
-				F2F035B52A8231FB002DCE5E /* MTRootWindowController.h */,
-				F2F035BA2A8231FB002DCE5E /* MTRootWindowController.m */,
-			);
-			name = WindowController;
-			sourceTree = "<group>";
-		};
-		F2F035DB2A823DA1002DCE5E /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				F2F035B62A8231FB002DCE5E /* MTTutorViewController.h */,
-				F2F035BD2A8231FB002DCE5E /* MTTutorViewController.m */,
-				F21470B22BF4A8CF00AF4117 /* MTVideoPlayerControllsViewController.h */,
-				F21470B32BF4A8CF00AF4117 /* MTVideoPlayerControllsViewController.m */,
-			);
-			name = ViewController;
-			sourceTree = "<group>";
-		};
-		F2F035DC2A823DAF002DCE5E /* Controlls */ = {
-			isa = PBXGroup;
-			children = (
-				F2F035B92A8231FB002DCE5E /* MTButton.h */,
-				F2F035B42A8231FB002DCE5E /* MTButton.m */,
-				F2F035F42A83ADE5002DCE5E /* MTInkingTool.h */,
-				F2F035F52A83ADE5002DCE5E /* MTInkingTool.m */,
-				F20A738B2A84E315002307F0 /* MTSegmentedControl.h */,
-				F20A738C2A84E315002307F0 /* MTSegmentedControl.m */,
-				F20AB92A2A88B65B00079807 /* MTTextField.h */,
-				F20AB92B2A88B65B00079807 /* MTTextField.m */,
-			);
-			name = Controlls;
-			sourceTree = "<group>";
-		};
-		F2F035DD2A823DB8002DCE5E /* Categories */ = {
-			isa = PBXGroup;
-			children = (
-				F2F035D72A823D80002DCE5E /* UIColor+Tutor.h */,
-				F2F035D82A823D80002DCE5E /* UIColor+Tutor.m */,
-			);
-			name = Categories;
-			sourceTree = "<group>";
-		};
-		F2F035E92A835CF8002DCE5E /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				F2F035EF2A835D33002DCE5E /* LaunchScreen.storyboard */,
-				F2F035EB2A835D2B002DCE5E /* Assets.xcassets */,
-				F2F035EC2A835D2B002DCE5E /* Info.plist */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		F2F035EA2A835D06002DCE5E /* Other Sources */ = {
-			isa = PBXGroup;
-			children = (
-				F2F035F22A835D3A002DCE5E /* main.m */,
-			);
-			name = "Other Sources";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,6 +108,9 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				F25D69AD2F4D931C00DD1ED0 /* Tutor */,
+			);
 			name = Tutor;
 			productName = Tutor;
 			productReference = F2F035952A82315D002DCE5E /* Tutor.app */;
@@ -249,7 +123,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 2620;
 				TargetAttributes = {
 					F2F035942A82315D002DCE5E = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -257,7 +131,6 @@
 				};
 			};
 			buildConfigurationList = F2F035902A82315D002DCE5E /* Build configuration list for PBXProject "Tutor" */;
-			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -265,6 +138,7 @@
 				Base,
 			);
 			mainGroup = F2F0358C2A82315D002DCE5E;
+			preferredProjectObjectVersion = 77;
 			productRefGroup = F2F035962A82315D002DCE5E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -279,8 +153,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F2F035F12A835D33002DCE5E /* LaunchScreen.storyboard in Resources */,
-				F2F035ED2A835D2B002DCE5E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,34 +163,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F2F035F62A83ADE5002DCE5E /* MTInkingTool.m in Sources */,
-				F2F035C02A8231FC002DCE5E /* MTRootWindowController.m in Sources */,
-				F2F035D92A823D80002DCE5E /* UIColor+Tutor.m in Sources */,
-				F20A738D2A84E315002307F0 /* MTSegmentedControl.m in Sources */,
-				F2F035BE2A8231FC002DCE5E /* MTButton.m in Sources */,
-				F2F035C22A8231FC002DCE5E /* MTTutorViewController.m in Sources */,
-				F243389A2BF363A200CFC654 /* MTRecorder.m in Sources */,
-				F20AB92C2A88B65B00079807 /* MTTextField.m in Sources */,
-				F21470B42BF4A8CF00AF4117 /* MTVideoPlayerControllsViewController.m in Sources */,
-				F2F035C12A8231FC002DCE5E /* MTAppDelegate.m in Sources */,
-				F2F035F32A835D3A002DCE5E /* main.m in Sources */,
-				F21470B12BF4A0E500AF4117 /* MTVideoPlayerView.m in Sources */,
-				F2F035BF2A8231FC002DCE5E /* MTSceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		F2F035EF2A835D33002DCE5E /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F2F035F02A835D33002DCE5E /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		F2F035AC2A82315E002DCE5E /* Debug */ = {
@@ -439,7 +287,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 568T6RKXH7;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Tutor/Info.plist;
+				INFOPLIST_FILE = Tutor/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
@@ -470,7 +318,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 568T6RKXH7;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Tutor/Info.plist;
+				INFOPLIST_FILE = Tutor/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
