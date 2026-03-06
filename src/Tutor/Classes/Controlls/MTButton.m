@@ -58,20 +58,23 @@
     return button;
 }
 
+- (id)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame])
+    {
+        [self registerForTraitChanges:@[UITraitUserInterfaceStyle.class]
+                           withAction:@selector(traitCollectionDidChange)];
+    }
+
+    return self;
+}
+
 - (void)didMoveToSuperview
 {
     [super didMoveToSuperview];
-    
+
     self.on = NO;
     [self updateBorderColor];
-}
-
-- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection
-{
-    [super traitCollectionDidChange:previousTraitCollection];
-    
-    [self updateBorderColor];
-    self.color = color;
 }
 
 - (void)setSelected:(BOOL)selected
@@ -148,6 +151,16 @@
 - (void)updateBorderColor
 {
     self.layer.borderColor = self.highlighted || self.selected || !self.enabled ? [[self.tintColor colorWithAlphaComponent:0.3] CGColor] : [self.tintColor CGColor];
+}
+
+
+
+#pragma mark UITraitChangeObservable
+#pragma mark ---
+- (void)traitCollectionDidChange
+{
+    [self updateBorderColor];
+    self.color = color;
 }
 
 @end

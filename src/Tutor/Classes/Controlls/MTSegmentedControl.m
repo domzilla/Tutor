@@ -15,11 +15,26 @@
 
 @implementation MTSegmentedControl
 
-- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection
+- (id)initWithFrame:(CGRect)frame
 {
-    [super traitCollectionDidChange:previousTraitCollection];
-    
-    [self updateBorderColor];
+    if (self = [super initWithFrame:frame])
+    {
+        [self registerForTraitChanges:@[UITraitUserInterfaceStyle.class]
+                           withAction:@selector(traitCollectionDidChange)];
+    }
+
+    return self;
+}
+
+- (id)initWithCoder:(NSCoder *)coder
+{
+    if (self = [super initWithCoder:coder])
+    {
+        [self registerForTraitChanges:@[UITraitUserInterfaceStyle.class]
+                           withAction:@selector(traitCollectionDidChange)];
+    }
+
+    return self;
 }
 
 
@@ -29,6 +44,15 @@
 - (void)updateBorderColor
 {
     self.layer.borderColor = [self.tintColor CGColor];
+}
+
+
+
+#pragma mark UITraitChangeObservable
+#pragma mark ---
+- (void)traitCollectionDidChange
+{
+    [self updateBorderColor];
 }
 
 @end
